@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Assertions;
 
 public class GoogleSteps extends GoogleTestRunner implements En{
 
-    public GoogleSteps(){
+    public GoogleSteps() {
 
-        GoogleHomePage googleHomePage;
+        GoogleHomePage googleHomePage = null;
 
         Before(2, GoogleTestRunner::setUp);
         After(GoogleTestRunner::tearDown);
 
-        Given("que estoy en el Home de Google", () -> Assertions.assertTrue(true));
+        Given("que estoy en el Home de Google", () -> googleHomePage.navigateTo("https://www.google.com/"));
 
         When("busco la palabra {string} en el navegador", (String string) -> {
             // Write code here that turns the phrase above into concrete actions
@@ -29,6 +29,9 @@ public class GoogleSteps extends GoogleTestRunner implements En{
         Then("me lleva a la pagina de resultados", () -> {
             // Write code here that turns the phrase above into concrete actions
             Assertions.assertTrue(true);
+
+
         });
+
     }
 }
