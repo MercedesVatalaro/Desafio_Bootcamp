@@ -7,4 +7,12 @@ public class ResultadosPage extends SeleniumWrapper {
     public ResultadosPage(WebDriver driver) {
         super(driver);
     }
+
+
+
+
+
+
+
+
 }
