@@ -1,5 +1,5 @@
 package aut.testcreation.steps;
-import aut.testcreation.pages.GoogleHomePage;
+import aut.testcreation.pages.RumboHomePage;
 import aut.testplan.sprint.GoogleTestRunner;
 import io.cucumber.java8.En;
 import org.junit.jupiter.api.Assertions;
@@ -9,12 +9,12 @@ public class GoogleSteps extends GoogleTestRunner implements En{
 
     public GoogleSteps() {
 
-        GoogleHomePage googleHomePage = null;
+        RumboHomePage rumboHomePage = null;
 
         Before(2, GoogleTestRunner::setUp);
         After(GoogleTestRunner::tearDown);
 
-        Given("que estoy en el Home de Google", () -> googleHomePage.navigateTo("https://www.google.com/"));
+        Given("que estoy en el Home de Google", () -> rumboHomePage.navigateTo("https://www.google.com/"));
 
         When("busco la palabra {string} en el navegador", (String string) -> {
             // Write code here that turns the phrase above into concrete actions
