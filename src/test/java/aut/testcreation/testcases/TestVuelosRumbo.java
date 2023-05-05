@@ -27,13 +27,19 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     @Test
     public void CP0007_DatosVueloDebeElegirDestino() {
     rumboHomePage= new RumboHomePage(super.driver);
-    resultadosPage= new ResultadosPage(super.driver);
+    rumboHomePage.navigateTo("https://www.rumbo.es/");
     rumboHomePage.ingresarOrigen("bue");
 
 
 
     }
 
+    @Test
+    public void CP0008_DatosVueloAniadirHotel(){
+    rumboHomePage= new RumboHomePage(super.driver);
+
+
+    }
 
 
     @Issue("123")

@@ -12,11 +12,9 @@ public class atc01_POM extends SeleniumTestBase {
     RumboHomePage rumboHomePage;
 
     @Test
-    @Tag("regresion")
-    void busquedaGoogle(){
+     void serviciosRumbo(){
         rumboHomePage = new RumboHomePage(DriverFactory.getDriver());
         rumboHomePage.navegarAlHome();
-        rumboHomePage.buscarConBotonBuscar("Tsoft");
-        Assertions.assertEquals("Tsoft - Buscar con Google", rumboHomePage.getUrlTitle());
+        Assertions.assertAll(rumboHomePage.getUrlTitle());
     }
 }

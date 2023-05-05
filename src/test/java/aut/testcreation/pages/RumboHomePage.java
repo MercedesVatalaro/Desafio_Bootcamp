@@ -3,6 +3,10 @@ package aut.testcreation.pages;
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 import static framework.engine.utils.Constants.BASE_URL_AUT;
 
@@ -37,9 +41,7 @@ public class RumboHomePage extends SeleniumWrapper {
 
     By checkboxAniadirHotel = By.xpath("//input[@id=\"isDpSearch\"]//ancestor::div[@class=\"d-bss3ni\"]");
 
-    By selectorFechaIdaLocator = By.xpath("//div[@class=\"d-fjquq8\"]");
-
-    By selectorFechaVueltaLocator = By.xpath("//div[@class=\"d-fjquq8\"]");
+    By selectorFechaLocator = By.xpath("//div[@class=\"d-fjquq8\"]");
 
     By inputOrigenBsAs = By.xpath("//input[@class=\"d-1r0xobh ed5mks91\"]");
 
@@ -47,14 +49,23 @@ public class RumboHomePage extends SeleniumWrapper {
     By btnBuscarLocator = By.xpath("//button[@class=\"d-1jmk4ql\"]");
     //methods
 
-    public void ingresarOrigen(String busqueda){
+    public void ingresarOrigen(String busqueda) {
         click(origenLocator);
-        write(busqueda,itemOrigenLocator);
+        write(busqueda, itemOrigenLocator);
+        if (isDisplayed(origenLocator)) {
+            click(inputOrigenBsAs);
+        }
     }
-    public void ingresarFechaIda(){
+    public void ingresarFecha(){
+            List<WebElement> fechaIngresada = findElements(selectorFechaLocator);
 
+               if(fechaIngresada.size()==2){
+                    fechaIngresada.get(0).click();
+                    fechaIngresada.get(1).click();
+                }
 
-    }
+}
+
     public void iconoBusqueda(){
 
         click(btnBuscarLocator);
