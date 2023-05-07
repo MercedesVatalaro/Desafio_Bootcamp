@@ -16,7 +16,7 @@ import org.openqa.selenium.WebDriver;
 
 import static framework.engine.utils.Constants.BASE_URL_AUT;
 
-public class TestVuelosRumbo extends SeleniumTestBase {
+public class TestHoteles extends SeleniumTestBase {
     WebDriver driver;
 
     RumboHomePage rumboHomePage;
@@ -24,20 +24,13 @@ public class TestVuelosRumbo extends SeleniumTestBase {
 
     ResultadosPage resultadosPage;
 
-
     @Test
-    public void CP0007_DatosVueloDebeElegirDestino() {
-    rumboHomePage= new RumboHomePage(super.driver);
-    rumboHomePage.navigateTo("https://www.rumbo.es/");
-    rumboHomePage.ingresarOrigen("bue");
-
-    }
-
-    @Test
-    public void CP0008_DatosVueloAniadirHotel(){
-    rumboHomePage= new RumboHomePage(super.driver);
-
-
+    public void CP0001_BusquedaAlojamiento_OK() throws InterruptedException {
+        rumboHomePage= new RumboHomePage(super.driver);
+        rumboHomePage.navigateTo("https://www.rumbo.es/");
+        Thread.sleep(2000);
+        rumboHomePage.ingresarHoteles();
+        Thread.sleep(5000);
     }
 
 
@@ -53,3 +46,4 @@ public class TestVuelosRumbo extends SeleniumTestBase {
         Assertions.assertTrue(true);
     }
 }
+

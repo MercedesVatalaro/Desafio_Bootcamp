@@ -29,9 +29,9 @@ public class DriverFactory {
                 getDriver().manage().window().maximize();
                 getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
                 return getDriver();
-            case "edge":
-                WebDriverManager.edgedriver().setup();
-                hiloLocal.set(new EdgeDriver());
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                hiloLocal.set(new ChromeDriver());
                 getDriver().manage().deleteAllCookies();
                 getDriver().manage().window().maximize();
                 getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -42,14 +42,14 @@ public class DriverFactory {
     }
 
     public WebDriver createWebDriver() {
-        String webDriver = System.getProperty("browser", "edge");
+        String webDriver = System.getProperty("browser", "chrome");
         switch (webDriver) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver();
-            case "edge":
-                WebDriverManager.edgedriver().setup();
-                return new EdgeDriver();
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                return new ChromeDriver();
             default:
                 throw new RuntimeException("Error en el webdriver: " + webDriver);
         }

@@ -49,6 +49,7 @@ public class RumboHomePage extends SeleniumWrapper {
 
     //localizadores de HOTELES
     By btnHotelesLocator = By.xpath("//button[.='Hoteles']");
+    By btnCookiesAceptarLocator = By.xpath("//button[@type='button' and @tabindex='1']");
     By txtBuscarLugarAlojamientoLocator = By.xpath("//label[.='Buscar alojamiento en']");
     By selectorFechaEntradaLocator = By.xpath("(//label[normalize-space()='Fecha de entrada'])[1]");
     By selectorFechaSalidaLocator = By.xpath("(//label[normalize-space()='Fecha de salida'])[1]");
@@ -76,6 +77,11 @@ public class RumboHomePage extends SeleniumWrapper {
     By selectorOfertasLocator = By.xpath("//span[@data-test='privacyPolicy-check']");
 
     //methods
+
+    public void ingresarHoteles (){
+        click(btnHotelesLocator);
+        click(btnCookiesAceptarLocator);
+    }
 
     public void ingresarOrigen(String busqueda) {
         click(origenLocator);
