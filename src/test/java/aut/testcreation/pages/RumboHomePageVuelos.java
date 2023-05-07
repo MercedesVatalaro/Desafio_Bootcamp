@@ -32,6 +32,9 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
 
     By destinoLocator = By.xpath("//input[@id=\":Rjaed6lalallbla2m:\"]");
 
+    By origenVacioLocator = By.xpath("//input[@value=\"\" and @aria-label=\"Origen\"]");
+
+    By destinoVacioLocator= By.xpath("//input[@value=\"\" and @aria-label=\"Destino\"]");
     By btnBorrarDatosOrigen = By.xpath("//button[@class=\"d-1nmp0nm ed5mks90\" ]//preceding::label[@class=\"d-1vyfrs4\" and contains(text(), 'Origen')]");
     By inputFechaIdaLocator= By.xpath("//button[@aria-label=\"Fecha de ida\"]");
 
@@ -51,10 +54,17 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
 
     By selectorFechaIdaLocator = By.xpath("//button[@class=\"d-1kuzy14\" and contains(number(), '17')]//ancestor::div[@aria-labelledby=\"5\"]");
     By inputOrigenBsAs = By.xpath("//input[@class=\"d-1r0xobh ed5mks91\"]");
-    By inputDestinoSantiagoCl = By.xpath("//input[@class=\"d-1r0xobh ed5mks91\" and @value=\"Santiago (SCL) - Arturo Merino Benítez, Chile\"]");
+    By inputDestinoSantiagoCl = By.xpath("//input[@class=\"d-1r0xobh ed5mks91\"]");
 
     By mjeErrorIntroduceDestino = By.xpath("//span[@class=\"d-1toc9z2\" and contains(text(), 'Introduce ciudad o aeropuerto de destino')]");
     By btnBuscarLocator = By.xpath("//button[@class=\"d-1jmk4ql\"]//ancestor::div[@class=\"d-xxdz9z\"]");
+
+    By selectorVuelomasRapido = By.xpath("//div[@class=\"Container__StyledContainer-sc-sb5e2u-0 cenTRx\"]//li[3]//h5[contains(text(), 'Más rápido')]");
+
+    By selectPrimerOpcionIda = By.xpath("(//input[@class=\"PrivateSwitchBase-input css-1m9pwf3\" and @type=\"checkbox\"]//ancestor::div[@class=\"FullWaySummary__WaySelectable-sc-43fbz2-0 hSrNDC\"])[1]");
+
+    By selectPrimerOpcionVuelta = By.xpath("(//input[@class=\"PrivateSwitchBase-input css-1m9pwf3\" and @type=\"checkbox\"]//ancestor::div[@class=\"FullWaySummary__WaySelectable-sc-43fbz2-0 hSrNDC\"])[2]");
+
 
     public void rechazarCookies(){
         if(isEnabled(cookiesLocator)){
@@ -66,9 +76,10 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
 
     public void ingresarOrigen(String origen) {
 
-        WebElement inputIngreseOrigen = findElement(origenLocator);
+
         click(origenLocator);
-        inputIngreseOrigen.clear();
+        clear(origenLocator);
+        isSelected(origenVacioLocator);
         write(origen, origenLocator);
 
         if (isDisplayed(origenLocator)) {
@@ -77,18 +88,21 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
     }
     public void ingresarDestino(String destino) {
 
+
         click(destinoLocator);
         clear(destinoLocator);
+        isSelected(destinoVacioLocator);
         write(destino, destinoLocator);
 
         if (isDisplayed(destinoLocator)) {
-            click(inputOrigenBsAs);
+            click(inputDestinoSantiagoCl);
         }
     }
     public void borrarInputDestino(){
 
         click(destinoLocator);
         clear(destinoLocator);
+        isSelected(destinoVacioLocator);
 
     }
     public void ingresarFecha(){
@@ -113,11 +127,32 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
 
     public void buscarVuelo(){
 
-        click(btnBuscarLocator);
+        submit(btnBuscarLocator);
+
     }
     public String mensajeErrorIngreseDestino() {
         return getText(mjeErrorIntroduceDestino);
     }
+
+    public void aniadirHotel(){
+        click(checkboxAniadirHotel);
+
+    }
+
+    public void seleccionarMasRapido(){
+
+        click(selectorVuelomasRapido);
+
+    }
+    public void seleccionarVueloIda(){
+        click(selectPrimerOpcionIda);
+    }
+
+    public void seleccionarVueloVuelta(){
+
+        click(selectPrimerOpcionVuelta);
+    }
+
 
     public void navegarAlHome(){
         navigateTo(BASE_URL_AUT);

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+import java.util.Set;
 
 public class SeleniumWrapper {
 
@@ -66,6 +67,31 @@ public class SeleniumWrapper {
     public void clear(By locator) {
         WebElement indexTexto = driver.findElement(locator);
         indexTexto.clear();
+    }
+    public void submit(By locator) {
+        WebElement enviarDatos = driver.findElement(locator);
+        enviarDatos.submit();
+    }
+    public void cambiarPestania() {
+
+
+        String mainTab = driver.getWindowHandle();
+        String newTab = "";
+
+        System.out.println("Main Tab: " + mainTab);
+
+        Set<String> handles = driver.getWindowHandles();
+        for (String actual : handles) {
+            System.out.println("--Handle Id: " + actual);
+
+            if (!actual.equalsIgnoreCase(mainTab)) {
+                System.out.println("--Cambiando Tab --");
+                driver.switchTo().window(actual);
+
+                newTab = actual;
+            }
+
+        }
     }
     public void navigateTo(String url){
         driver.navigate().to(url);
