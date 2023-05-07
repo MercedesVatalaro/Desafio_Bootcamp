@@ -2,6 +2,7 @@ package aut.testcreation.pages;
 
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,14 +19,20 @@ public class RumboHomePage extends SeleniumWrapper {
 
     //locators
 
+    //Rechazar cookies
+
+    By cookiesLocator = By.xpath("//div[@class=\"iubenda-cs-rationale\"]");
+    By rechazarCookiesLocator = By.xpath("//button[contains(text(), 'Rechazar todo')]");
+    By origenLocator = By.xpath("//input[@id=\":Riqed6lalallbla2m:\"]");
     By itemVuelosCentral = By.xpath("//div[@class=\"tab-button selected d-16uu04l\"]");
 
     By itemVuelosNav = By.xpath("//a[@class=\"evvzyi82 d-134lsl7 e89md6u0\"]//ancestor::div[@class=\"d-1ytebqy e10w470p3\"]");
-    By origenLocator = By.xpath("//input[@id=\":Riqed6lalallbla2m:\"]");
-    By itemOrigenLocator = By.name("bue");
+
+    By itemOrigenLocator = By.name("Buenos Aires (BUE");
 
     By destinoLocator = By.xpath("//input[@id=\":Rjaed6lalallbla2m:\"]");
 
+    By btnBorrarDatosOrigen = By.xpath("//button[@class=\"d-1nmp0nm ed5mks90\" ]//preceding::label[@class=\"d-1vyfrs4\" and contains(text(), 'Origen')]");
     By inputFechaIdaLocator= By.xpath("//button[@aria-label=\"Fecha de ida\"]");
 
     By inputFechaVueltaLocator= By.xpath("//button[@aria-label=\"Fecha de vuelta\"]");
@@ -40,12 +47,14 @@ public class RumboHomePage extends SeleniumWrapper {
 
     By checkboxAniadirHotel = By.xpath("//input[@id=\"isDpSearch\"]//ancestor::div[@class=\"d-bss3ni\"]");
 
-    By selectorFechaLocator = By.xpath("//div[@class=\"d-fjquq8\"]");
+    By selectorFechaVueltaLocator = By.xpath("//button[@class=\"d-1kuzy14\" and contains(number(), '31')]");
 
+    By selectorFechaIdaLocator = By.xpath("//button[@class=\"d-1kuzy14\" and contains(number(), '17')]//ancestor::div[@aria-labelledby=\"5\"]");
     By inputOrigenBsAs = By.xpath("//input[@class=\"d-1r0xobh ed5mks91\"]");
+    By inputDestinoSantiagoCl = By.xpath("//input[@class=\"d-1r0xobh ed5mks91\" and @value=\"Santiago (SCL) - Arturo Merino Benítez, Chile\"]");
 
-    By mjeErrorIntroduceDestino = By.xpath("//span[@class=\"d-1toc9z2\"]");
-    By btnBuscarLocator = By.xpath("//button[@class=\"d-1jmk4ql\"]");
+    By mjeErrorIntroduceDestino = By.xpath("//span[@class=\"d-1toc9z2\" and contains(text(), 'Introduce ciudad o aeropuerto de destino')]");
+    By btnBuscarLocator = By.xpath("//button[@class=\"d-1jmk4ql\"]//ancestor::div[@class=\"d-xxdz9z\"]");
 
     //localizadores de HOTELES
     By btnHotelesLocator = By.xpath("//button[.='Hoteles']");
@@ -77,28 +86,69 @@ public class RumboHomePage extends SeleniumWrapper {
 
     //methods
 
-    public void ingresarOrigen(String busqueda) {
+
+    public void rechazarCookies(){
+        if(isEnabled(cookiesLocator)){
+            click(rechazarCookiesLocator);
+
+        }
+
+    }
+
+   public void ingresarOrigen(String origen) {
+
+        WebElement inputIngreseOrigen = findElement(origenLocator);
         click(origenLocator);
-        write(busqueda, itemOrigenLocator);
+        inputIngreseOrigen.clear();
+        write(origen, origenLocator);
+
         if (isDisplayed(origenLocator)) {
             click(inputOrigenBsAs);
         }
     }
+    public void ingresarDestino(String destino) {
+
+        click(destinoLocator);
+        clear(destinoLocator);
+        write(destino, destinoLocator);
+
+        if (isDisplayed(destinoLocator)) {
+            click(inputOrigenBsAs);
+        }
+    }
+    public void borrarInputDestino(){
+
+        click(destinoLocator);
+        clear(destinoLocator);
+
+    }
     public void ingresarFecha(){
-            List<WebElement> fechaIngresada = findElements(selectorFechaLocator);
 
-               if(fechaIngresada.size()==2){
-                    fechaIngresada.get(0).click();
-                    fechaIngresada.get(1).click();
-                }
 
-}
+        click(inputFechaIdaLocator);
 
-    public void iconoBusqueda(){
+        if(isDisplayed(inputFechaIdaLocator)){
+        WebElement fechaIdaSeleccionada = findElement(selectorFechaIdaLocator);
+        click(selectorFechaIdaLocator);
+        boolean sehizoClick = fechaIdaSeleccionada.getAttribute("class").contains("selected");
+        if(sehizoClick){
+
+            click(selectorFechaVueltaLocator);
+        }
+
+            }
+
+       }
+
+
+
+    public void buscarVuelo(){
 
         click(btnBuscarLocator);
     }
-
+    public String mensajeErrorIngreseDestino() {
+        return getText(mjeErrorIntroduceDestino);
+    }
 
     public void navegarAlHome(){
         navigateTo(BASE_URL_AUT);

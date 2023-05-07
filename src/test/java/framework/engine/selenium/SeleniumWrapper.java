@@ -4,12 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
 public class SeleniumWrapper {
 
-    private final WebDriver driver;
+    protected final WebDriver driver;
 
     //Constructor Base
     public SeleniumWrapper(WebDriver driver){
@@ -62,7 +63,10 @@ public class SeleniumWrapper {
             return false;
         }
     }
-
+    public void clear(By locator) {
+        WebElement indexTexto = driver.findElement(locator);
+        indexTexto.clear();
+    }
     public void navigateTo(String url){
         driver.navigate().to(url);
     }

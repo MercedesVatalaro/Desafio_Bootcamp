@@ -28,7 +28,13 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     public void CP0007_DatosVueloDebeElegirDestino() {
     rumboHomePage= new RumboHomePage(super.driver);
     rumboHomePage.navigateTo("https://www.rumbo.es/");
-    rumboHomePage.ingresarOrigen("bue");
+    rumboHomePage.rechazarCookies();
+    rumboHomePage.ingresarOrigen("Buenos Aires (BUE)");
+    rumboHomePage.borrarInputDestino();
+    rumboHomePage.ingresarFecha();
+    rumboHomePage.buscarVuelo();
+    Assertions.assertEquals("Introduce ciudad o aeropuerto de destino", rumboHomePage.mensajeErrorIngreseDestino());
+
 
 
 
@@ -37,7 +43,20 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     @Test
     public void CP0008_DatosVueloAniadirHotel(){
     rumboHomePage= new RumboHomePage(super.driver);
+        rumboHomePage.navigateTo("https://www.rumbo.es/");
+        rumboHomePage.rechazarCookies();
+        rumboHomePage.ingresarOrigen("Buenos Aires (BUE)");
+        rumboHomePage.ingresarDestino("Santiago (SCL)");
+        rumboHomePage.ingresarFecha();
 
+        rumboHomePage.buscarVuelo();
+
+    }
+
+    @Test
+    public void CP0011_DatosReservaFaltaIngresarMedioDePago() {
+    rumboHomePage= new RumboHomePage(super.driver);
+    rumboHomePage.navigateTo("https://www.rumbo.es/");
 
     }
 
