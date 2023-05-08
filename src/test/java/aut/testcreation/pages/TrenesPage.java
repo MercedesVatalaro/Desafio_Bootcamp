@@ -8,6 +8,11 @@ public class TrenesPage extends SeleniumWrapper {
     public TrenesPage(WebDriver driver) {
         super(driver);
     }
+
+    By cookiesLocator = By.xpath("//div[@class=\"iubenda-cs-rationale\"]");
+    By aceptarCookiesLocator = By.xpath("//button[contains(text(), 'Aceptar todo')]");
+
+    // CP0013 - Busqueda de boletos en tren- 31 noches//
     By itemTrenesCentral = By.xpath("//div[@class=\"tab-button selected evvzyi82 d-134lsl7)\"]");
 
     By origenLocator = By.xpath("//input[@id=\":Rmhl6lalaqlql2m:\"]");
