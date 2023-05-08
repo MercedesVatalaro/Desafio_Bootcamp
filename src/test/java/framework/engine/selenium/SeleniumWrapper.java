@@ -72,27 +72,7 @@ public class SeleniumWrapper {
         WebElement enviarDatos = driver.findElement(locator);
         enviarDatos.submit();
     }
-    public void cambiarPestania() {
 
-
-        String mainTab = driver.getWindowHandle();
-        String newTab = "";
-
-        System.out.println("Main Tab: " + mainTab);
-
-        Set<String> handles = driver.getWindowHandles();
-        for (String actual : handles) {
-            System.out.println("--Handle Id: " + actual);
-
-            if (!actual.equalsIgnoreCase(mainTab)) {
-                System.out.println("--Cambiando Tab --");
-                driver.switchTo().window(actual);
-
-                newTab = actual;
-            }
-
-        }
-    }
     public void navigateTo(String url){
         driver.navigate().to(url);
     }
