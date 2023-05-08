@@ -20,7 +20,7 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     RumboHomePageVuelos rumboHomePageVuelos;
 
 
-    @Test
+    @Test //OK
     public void CP0007_DatosVueloDebeElegirDestino() {
     rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
     rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
@@ -36,7 +36,7 @@ public class TestVuelosRumbo extends SeleniumTestBase {
 
     }
 
-    @Test
+    @Test //OK
     public void CP0008_DatosVueloAniadirHotel(){
     rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
         rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
@@ -73,7 +73,7 @@ public class TestVuelosRumbo extends SeleniumTestBase {
         rumboHomePageVuelos.ingresarDestino("Cancún (CUN)");
         rumboHomePageVuelos.ingresarFecha();
         rumboHomePageVuelos.buscarVuelo();
-        //rumboHomePageVuelos.seleccionarMasRapido();
+        rumboHomePageVuelos.seleccionarMasRapido();
 
     }
 
@@ -81,9 +81,25 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     public void CP0011_DatosReservaFaltaIngresarMedioDePago() {
     rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
     rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
+    rumboHomePageVuelos.rechazarCookies();
+    rumboHomePageVuelos.ingresarOrigen("Sao Paulo (SAO)");
+    rumboHomePageVuelos.ingresarDestino("Cancún (CUN)");
+    rumboHomePageVuelos.ingresarFecha();
+    rumboHomePageVuelos.buscarVuelo();
 
     }
 
+    @Test
+    public void CP0012_ReservaPersona_con_MovilidadReducida() {
+        rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
+        rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
+        rumboHomePageVuelos.rechazarCookies();
+        rumboHomePageVuelos.ingresarOrigen("Sao Paulo (SAO)");
+        rumboHomePageVuelos.ingresarDestino("Cancún (CUN)");
+        rumboHomePageVuelos.ingresarFecha();
+        rumboHomePageVuelos.buscarVuelo();
+
+    }
 
     @Issue("123")
     @Issue("432")
