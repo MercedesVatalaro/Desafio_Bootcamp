@@ -1,12 +1,15 @@
 package aut.testcreation.pages;
 
+import framework.engine.selenium.DriverFactory;
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 import static framework.engine.utils.Constants.BASE_URL_AUT;
@@ -65,6 +68,7 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
 
     By selectPrimerOpcionVuelta = By.xpath("(//input[@class=\"PrivateSwitchBase-input css-1m9pwf3\" and @type=\"checkbox\"]//ancestor::div[@class=\"FullWaySummary__WaySelectable-sc-43fbz2-0 hSrNDC\"])[2]");
 
+    By selectEsperarResultados = By.xpath("//div[@class=\"layer-1\"]//ancestor::div[@class=\"grid-container grid-with-right-ads\"]");
 
     public void rechazarCookies(){
         if(isEnabled(cookiesLocator)){
@@ -144,7 +148,10 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
         click(selectorVuelomasRapido);
 
     }
-    public void seleccionarVueloIda(){
+    public void seleccionarVueloIda() throws InterruptedException {
+        WebElement resultados = findElement(selectEsperarResultados);
+        WebDriverWait esperar = new WebDriverWait(DriverFactory.getDriver(),10 );
+        esperar.until(ExpectedConditions.visibilityOf(resultados));
         click(selectPrimerOpcionIda);
     }
 

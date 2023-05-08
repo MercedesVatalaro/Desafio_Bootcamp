@@ -50,7 +50,7 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     }
 
     @Test
-    public void CP0009_DatosVuelo_Y_SeleccionVuelo(){
+    public void CP0009_DatosVuelo_Y_SeleccionVuelo() throws InterruptedException {
         rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
         rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
         rumboHomePageVuelos.rechazarCookies();
@@ -58,6 +58,8 @@ public class TestVuelosRumbo extends SeleniumTestBase {
         rumboHomePageVuelos.ingresarDestino("Santiago (SCL)");
         rumboHomePageVuelos.ingresarFecha();
         rumboHomePageVuelos.buscarVuelo();
+        rumboHomePageVuelos.seleccionarVueloIda();
+        rumboHomePageVuelos.seleccionarVueloVuelta();
 
 
     }
