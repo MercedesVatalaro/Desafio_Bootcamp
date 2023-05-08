@@ -12,6 +12,7 @@ import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static framework.engine.utils.Constants.BASE_URL_AUT;
@@ -24,13 +25,15 @@ public class TestHoteles extends SeleniumTestBase {
 
     ResultadosPage resultadosPage;
 
+
     @Test
     public void CP0001_BusquedaAlojamiento_OK() throws InterruptedException {
         rumboHomePage= new RumboHomePage(super.driver);
         rumboHomePage.navigateTo("https://www.rumbo.es/");
-        Thread.sleep(2000);
-        rumboHomePage.ingresarHoteles();
+        rumboHomePage.ingresarSeccionHoteles();
         Thread.sleep(5000);
+        rumboHomePage.buscarLugarAlojamiento("barc");
+        Thread.sleep(10000);
     }
 
 

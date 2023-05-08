@@ -4,7 +4,9 @@ import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -26,9 +28,9 @@ public class RumboHomePage extends SeleniumWrapper {
 
     By destinoLocator = By.xpath("//input[@id=\":Rjaed6lalallbla2m:\"]");
 
-    By inputFechaIdaLocator= By.xpath("//button[@aria-label=\"Fecha de ida\"]");
+    By inputFechaIdaLocator = By.xpath("//button[@aria-label=\"Fecha de ida\"]");
 
-    By inputFechaVueltaLocator= By.xpath("//button[@aria-label=\"Fecha de vuelta\"]");
+    By inputFechaVueltaLocator = By.xpath("//button[@aria-label=\"Fecha de vuelta\"]");
 
     By pasajerosLocator = By.xpath("//button[@class=\"d-1rd1vwn\"]");
 
@@ -48,9 +50,12 @@ public class RumboHomePage extends SeleniumWrapper {
     By btnBuscarLocator = By.xpath("//button[@class=\"d-1jmk4ql\"]");
 
     //localizadores de HOTELES
-    By btnHotelesLocator = By.xpath("//button[.='Hoteles']");
-    By btnCookiesAceptarLocator = By.xpath("//button[@type='button' and @tabindex='1']");
-    By txtBuscarLugarAlojamientoLocator = By.xpath("//label[.='Buscar alojamiento en']");
+    By btnHotelesLocator = By.xpath("//button[@aria-label='Hoteles']");
+
+    By btnCookiesAceptarLocator = By.xpath("//button[contains(text(),'Aceptar todo')]");
+    By txtBuscarLugarAlojamientoLocator = By.xpath("//label[normalize-space()='Buscar alojamiento en']");
+
+    By selectorLugarLocator = By.xpath("//*[@id=\":r0:\"]");
     By selectorFechaEntradaLocator = By.xpath("(//label[normalize-space()='Fecha de entrada'])[1]");
     By selectorFechaSalidaLocator = By.xpath("(//label[normalize-space()='Fecha de salida'])[1]");
     By btnMasPersonasLocator = By.xpath("//button[@aria-label='Aumentar el número de adultos']//*[name()='svg']");
@@ -78,10 +83,25 @@ public class RumboHomePage extends SeleniumWrapper {
 
     //methods
 
-    public void ingresarHoteles (){
-        click(btnHotelesLocator);
+    public void ingresarSeccionHoteles() {
         click(btnCookiesAceptarLocator);
+        click(btnHotelesLocator);
     }
+    public void buscarLugarAlojamiento ( String lugar){
+
+        write(lugar, selectorLugarLocator);
+        scrolling(buscarElementoWeb(selectorLugarLocator));
+        click(selectorLugarLocator);
+
+    }
+
+
+
+    public void ingresarAlojamiento (){
+
+    }
+
+
 
     public void ingresarOrigen(String busqueda) {
         click(origenLocator);
