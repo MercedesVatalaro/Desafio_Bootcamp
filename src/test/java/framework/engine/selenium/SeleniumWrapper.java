@@ -1,18 +1,25 @@
 package framework.engine.selenium;
 
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import java.util.List;
 
+
 public class SeleniumWrapper {
+
 
     private final WebDriver driver;
     private Select select;
     private WebDriverWait wait;
     private JavascriptExecutor js;
+
 
     //Constructor Base
     public SeleniumWrapper(WebDriver driver){
@@ -42,6 +49,9 @@ public class SeleniumWrapper {
     public void click(By locator){
         driver.findElement(locator).click();
     }
+    public void click(WebElement elemento){
+        elemento.click();
+    }
 
     public Boolean isDisplayed(By locator) {
         try {
@@ -65,6 +75,14 @@ public class SeleniumWrapper {
             return false;
         }
     }
+    public void clear(By locator) {
+        WebElement indexTexto = driver.findElement(locator);
+        indexTexto.clear();
+    }
+    public void submit(By locator) {
+        WebElement enviarDatos = driver.findElement(locator);
+        enviarDatos.submit();
+    }
 
     public void navigateTo(String url){
         driver.navigate().to(url);
@@ -74,7 +92,7 @@ public class SeleniumWrapper {
         return driver.getTitle();
     }
 
-    //agregados por Flor (metodos para enmascarar/encapsular la libreria de selenium)
+
     public WebElement buscarElementoWeb (By localizador){
         return driver.findElement(localizador);
     }
@@ -83,16 +101,7 @@ public class SeleniumWrapper {
         return driver.findElements(localizador);
     }
 
-  /*  public void selectPrimeraOpcion(By Locator, String selectValue) {
-        WebElement  primerElemento = driver.findElement(Locator);
-        Select select = new Select(primerElemento);
-        select.selectByValue(selectValue);
-        WebElement primeraOpcion = select.getFirstSelectedOption();
-        System.out.println(primeraOpcion.getText());
-    }*/
-
-
-    public void escribir (String texto, WebElement elemento){
+     public void escribir (String texto, WebElement elemento){
         elemento.sendKeys(texto);
         elemento.click();
     }
@@ -123,6 +132,9 @@ public class SeleniumWrapper {
 
     }
 
+    public void scroll(int horizontal, int vertical) {
+        ((JavascriptExecutor) driver).executeScript("scroll(" + horizontal + "," + vertical + ")");
+    }
     public void scrolling (WebElement elemento){
         js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", elemento); //hace scroll hasta encontrar el elemento
@@ -143,6 +155,7 @@ public class SeleniumWrapper {
 
         return wait.until(ExpectedConditions.visibilityOf(elemento));
     }
+
 
 
 }

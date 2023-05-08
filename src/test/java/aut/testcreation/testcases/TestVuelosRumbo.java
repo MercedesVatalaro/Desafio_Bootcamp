@@ -1,8 +1,6 @@
 package aut.testcreation.testcases;
 
-import aut.testcreation.pages.ReservaPage;
-import aut.testcreation.pages.ResultadosPage;
-import aut.testcreation.pages.RumboHomePage;
+import aut.testcreation.pages.RumboHomePageVuelos;
 import framework.engine.selenium.SeleniumTestBase;
 import framework.engine.selenium.DriverFactory;
 import io.qameta.allure.Description;
@@ -19,24 +17,69 @@ import static framework.engine.utils.Constants.BASE_URL_AUT;
 public class TestVuelosRumbo extends SeleniumTestBase {
     WebDriver driver;
 
-    RumboHomePage rumboHomePage;
-    ReservaPage reservaPage;
+    RumboHomePageVuelos rumboHomePageVuelos;
 
-    ResultadosPage resultadosPage;
 
 
     @Test
     public void CP0007_DatosVueloDebeElegirDestino() {
-    rumboHomePage= new RumboHomePage(super.driver);
-    rumboHomePage.navigateTo("https://www.rumbo.es/");
-    rumboHomePage.ingresarOrigen("bue");
+    rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
+    rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
+    rumboHomePageVuelos.rechazarCookies();
+    rumboHomePageVuelos.ingresarOrigen("Buenos Aires (BUE)");
+    rumboHomePageVuelos.borrarInputDestino();
+    rumboHomePageVuelos.ingresarFecha();
+    rumboHomePageVuelos.buscarVuelo();
+    Assertions.assertEquals("Introduce ciudad o aeropuerto de destino", rumboHomePageVuelos.mensajeErrorIngreseDestino());
+
 
     }
 
     @Test
     public void CP0008_DatosVueloAniadirHotel(){
-    rumboHomePage= new RumboHomePage(super.driver);
+    rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
+        rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
+        rumboHomePageVuelos.rechazarCookies();
+        rumboHomePageVuelos.ingresarOrigen("Buenos Aires (BUE)");
+        rumboHomePageVuelos.ingresarDestino("Santiago (SCL)");
+        rumboHomePageVuelos.ingresarFecha();
+        rumboHomePageVuelos.aniadirHotel();
+        rumboHomePageVuelos.buscarVuelo();
 
+    }
+
+    @Test
+    public void CP0009_DatosVuelo_Y_SeleccionVuelo() throws InterruptedException {
+        rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
+        rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
+        rumboHomePageVuelos.rechazarCookies();
+        rumboHomePageVuelos.ingresarOrigen("Buenos Aires (BUE)");
+        rumboHomePageVuelos.ingresarDestino("Santiago (SCL)");
+        rumboHomePageVuelos.ingresarFecha();
+        rumboHomePageVuelos.buscarVuelo();
+        rumboHomePageVuelos.seleccionarVueloIda();
+        rumboHomePageVuelos.seleccionarVueloVuelta();
+
+
+    }
+
+    @Test
+    public void CP0010_reservaVuelomasRapido(){
+        rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
+        rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
+        rumboHomePageVuelos.rechazarCookies();
+        rumboHomePageVuelos.ingresarOrigen("Sao Paulo (SAO)");
+        rumboHomePageVuelos.ingresarDestino("Cancún (CUN)");
+        rumboHomePageVuelos.ingresarFecha();
+        rumboHomePageVuelos.buscarVuelo();
+        //rumboHomePageVuelos.seleccionarMasRapido();
+
+    }
+
+    @Test
+    public void CP0011_DatosReservaFaltaIngresarMedioDePago() {
+    rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
+    rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
 
     }
 
