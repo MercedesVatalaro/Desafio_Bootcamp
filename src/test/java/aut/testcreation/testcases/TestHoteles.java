@@ -29,6 +29,7 @@ public class TestHoteles extends SeleniumTestBase {
     public void CP0001_BusquedaAlojamiento_OK() throws InterruptedException {
         rumboHomePageHoteles= new RumboHomePageHoteles(super.driver);
         rumboHomePageHoteles.navigateTo("https://www.rumbo.es/");
+        rumboHomePageHoteles.aceptarCookies();
         rumboHomePageHoteles.ingresarSeccionHoteles();
         Thread.sleep(5000);
         rumboHomePageHoteles.buscarLugarAlojamiento("Barcelona");
@@ -41,6 +42,7 @@ public class TestHoteles extends SeleniumTestBase {
     public void CP0002_BusquedaAlojamiento_CantMaxPersonas () throws InterruptedException {
         rumboHomePageHoteles= new RumboHomePageHoteles(super.driver);
         rumboHomePageHoteles.navigateTo("https://www.rumbo.es/");
+        rumboHomePageHoteles.aceptarCookies();
         rumboHomePageHoteles.ingresarSeccionHoteles();
         Thread.sleep(5000);
         rumboHomePageHoteles.buscarLugarAlojamiento("Barcelona");
@@ -50,27 +52,55 @@ public class TestHoteles extends SeleniumTestBase {
     }
 
     @Test
-    public void CP0003_ReservaAlojamiento_PagoRechazado () throws InterruptedException {
+    public void CP0003_ReservaNoOK_PagoRechazado_noOK () throws InterruptedException {
         rumboHomePageHoteles= new RumboHomePageHoteles(super.driver);
         rumboHomePageHoteles.navigateTo("https://www.rumbo.es/");
+        rumboHomePageHoteles.aceptarCookies();
         rumboHomePageHoteles.ingresarSeccionHoteles();
         Thread.sleep(5000);
         rumboHomePageHoteles.buscarLugarAlojamiento("Barcelona");
         Thread.sleep(5000);
         rumboHomePageHoteles.fechaEntradaSalida();
         rumboHomePageHoteles.buscarHotel();
-        rumboHomePageHoteles.ReservarHotel();
-
 
     }
-
     @Test
-    public void CP0003_ReservaAlojamiento_DatosUsuario_OK (){
+    public void CP004_ReservaHotel_OK () throws InterruptedException {
+        rumboHomePageHoteles= new RumboHomePageHoteles(super.driver);
+        rumboHomePageHoteles.navigateTo("https://www.rumbo.es/");
+        rumboHomePageHoteles.aceptarCookies();
+        rumboHomePageHoteles.ingresarSeccionHoteles();
+        Thread.sleep(5000);
+        rumboHomePageHoteles.buscarLugarAlojamiento("Barcelona");
+        Thread.sleep(5000);
+        rumboHomePageHoteles.fechaEntradaSalida();
+        rumboHomePageHoteles.buscarHotel();
+        Thread.sleep(5000);
+        rumboHomePageHoteles.elegirHotel();
 
     }
+    @Test
+    public void CP005_ReservaHotel_PrecioVisible () throws InterruptedException {
+        rumboHomePageHoteles= new RumboHomePageHoteles(super.driver);
+        rumboHomePageHoteles.navigateTo("https://www.rumbo.es/");
+        rumboHomePageHoteles.aceptarCookies();
+        rumboHomePageHoteles.ingresarSeccionHoteles();
+        Thread.sleep(5000);
+        rumboHomePageHoteles.buscarLugarAlojamiento("Barcelona");
+        Thread.sleep(5000);
+        rumboHomePageHoteles.fechaEntradaSalida();
+        rumboHomePageHoteles.buscarHotel();
+        rumboHomePageHoteles.verificarPrecioHotel();
 
+    }
+    @Test
+    public void CP006_ReservaNoOk_DatosUsuariosIncorrectos () throws InterruptedException {
+        rumboHomePageHoteles= new RumboHomePageHoteles(super.driver);
+        rumboHomePageHoteles.navigateTo("https://secure.rumbo.es/hdp/checkout/carts/CDDA797166697C4D4B4C5B76766007D6279A2E9D?");
+        rumboHomePageHoteles.aceptarCookies();
+        rumboHomePageHoteles.ingresarDatosUsuario("Juliana", "Martinez", "julianamartinez.1452@gmail.com",154123123);
 
-
+    }
 
     @Issue("123")
     @Issue("432")

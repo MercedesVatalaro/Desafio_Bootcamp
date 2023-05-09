@@ -12,6 +12,7 @@ import java.time.Duration;
 
 import static framework.engine.utils.Constants.BASE_URL_AUT;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class RumboHomePageHoteles extends SeleniumWrapper {
 
@@ -28,12 +29,13 @@ public class RumboHomePageHoteles extends SeleniumWrapper {
     By seleccionFechaDeSalidaLocator = By.xpath("//body/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[2]/button[9]");
     By btnMasPersonasLocator = By.xpath("//body/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/section[1]/div[1]/div[2]/div[2]/button[2]");
     By btnBuscarHotelesLocator = By.xpath("//body/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[4]/div[1]/button[1]/div[1]/*[1]");
-    By selectPrimerHotelLocator= By.xpath("(//a[@class='sc-jFJHMl jtYlit'])[1]");
-    By btnReservarLocator = By.xpath("//button[@class='Button-sc-1bbve8d-0 bsSjVP Hero___StyledScrollToIdButton-sc-1pqg2ch-22 bZMZIZ']");
-    By btnSoloAlojamientoLocator = By.xpath("//body/div[@id='__next']/div[2]/section[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/button[1]");
-    By btnContinuarReservaLocator = By.xpath("//button[normalize-space()='Continuar']");
+    By txtPrecioLocator = By.xpath("//div[@class='sc-rZqKh jEcotq']/div[1]//span[@class='sc-iqavZe kDhOEP']");
+    By selectHotelLocator = By.xpath("//body/div[@id='__next']/main[1]/div[1]/div[1]/div[2]/div[1]/a[1]");
+    By btnResevaDesdeLocator = By.xpath("//div[contains(@class, 'info-book')]");
+    By selectSoloAlojamientoLocator = By.xpath("//body/div[@id='__next']/div[2]/section[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]");
     By txtNombreLocator = By.xpath("//input[@name='name']");
     By txtApellidoLocator = By.xpath("//input[@name='surname']");
+    By txtEmailLocator= By.xpath("//input[@id='contact-email']");
     By cbCodigoAreaLocator = By.xpath("//li[@class='country highlight preferred']//span[@class='country-name'][normalize-space()='Argentina']");
     By txtTelefonoLocator = By.xpath("//input[@name='phone']");
     By selectorNoProtegerViajeLocator = By.xpath("//label[@class='insurance__noThanks-radio-label']//span[@class='circle']");
@@ -49,12 +51,13 @@ public class RumboHomePageHoteles extends SeleniumWrapper {
 
     //methods
 
-
-    public void ingresarSeccionHoteles() {
+    public void aceptarCookies (){
         click(btnCookiesAceptarLocator);
+    }
+    public void ingresarSeccionHoteles() {
+
         click(btnHotelesLocator);
     }
-
     public void buscarLugarAlojamiento ( String lugar){
 
        // WebElement esperarAlojamiento = findElement(buscarAlojamientoEnLocator);
@@ -62,7 +65,6 @@ public class RumboHomePageHoteles extends SeleniumWrapper {
         write(lugar, buscarAlojamientoEnLocator);
         click(primerOpcionAlojamientoEnLocator);
     }
-
 
     public void fechaEntradaSalida () throws InterruptedException {
 
@@ -74,6 +76,7 @@ public class RumboHomePageHoteles extends SeleniumWrapper {
     public void buscarHotel() throws InterruptedException {
         click(btnBuscarHotelesLocator);
         Thread.sleep(3000);
+
     }
 
     public void clickCantMaximaPersonas() {
@@ -88,15 +91,39 @@ public class RumboHomePageHoteles extends SeleniumWrapper {
         }
     }
 
-    public void ReservarHotel () throws InterruptedException {
-        click(selectPrimerHotelLocator);
-        Thread.sleep(15000);
-        scrolling(buscarElementoWeb(btnReservarLocator));
-        Thread.sleep(2000);
-        click(btnReservarLocator);
-        //scrolling(buscarElementoWeb(btnReservarLocator));
-        //Thread.sleep(2000);
-        //click(btnSoloAlojamientoLocator);
+    public void cambiarPestania (){
+        navigateTo("https://secure.rumbo.es/");
+    }
+
+    public void elegirHotel () throws InterruptedException {
+        click(selectHotelLocator);
+        Thread.sleep(10000);
+
+        buscarElementosWeb(btnResevaDesdeLocator);
+        click(btnResevaDesdeLocator);
+    }
+
+    public void verificarPrecioHotel () {
+
+        buscarElementosWeb(txtPrecioLocator);
+
+        String precio = obtenerTexto(txtPrecioLocator);
+
+        if(!precio.isEmpty()) {
+            System.out.println("El precio es: " + precio);
+            } else {
+            System.out.println("El precio está vacío");
+            }
+    }
+
+    public void ingresarDatosUsuario (String nombre, String apellido, String email, int telefono){
+
+        write(nombre, txtNombreLocator);
+        write(apellido, txtApellidoLocator);
+        write(email, txtEmailLocator);
+        seleccionarComboBoxPorTextoVisible(buscarElementoWeb(cbCodigoAreaLocator), "+54");
+        write(String.valueOf(telefono), txtTelefonoLocator);
+
     }
 
 

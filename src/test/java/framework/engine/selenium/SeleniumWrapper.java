@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.time.Duration;
 import java.util.List;
 
 
@@ -94,11 +96,19 @@ public class SeleniumWrapper {
 
 
     public WebElement buscarElementoWeb (By localizador){
+
         return driver.findElement(localizador);
     }
 
     public List<WebElement> buscarElementosWeb (By localizador){
+
         return driver.findElements(localizador);
+    }
+
+    public void seleccionarComboBoxPorTextoVisible(WebElement elemento, String valor){
+        select = new Select(elemento);
+        select.selectByVisibleText(valor);
+
     }
 
      public void escribir (String texto, WebElement elemento){
@@ -139,22 +149,17 @@ public class SeleniumWrapper {
         js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", elemento); //hace scroll hasta encontrar el elemento
     }
-    public void scrolling (By locator){
+   /* public void scrolling (By locator){
         js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", locator); //hace scroll hasta encontrar el elemento
-    }
-
-    public void seleccionarComboBoxPorTextoVisible(WebElement elemento, String valor){
-        select = new Select(elemento);
-        select.selectByVisibleText(valor);
-
-    }
+    }*/
 
     public WebElement esperarPorElementoVisible (WebElement elemento){
         wait = new WebDriverWait(driver, 20);
 
         return wait.until(ExpectedConditions.visibilityOf(elemento));
     }
+
 
 
 
