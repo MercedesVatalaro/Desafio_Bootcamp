@@ -68,8 +68,40 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
     By selectEsperarResultados = By.xpath("//title[contains(text(), 'Rumbo vuelos baratos Buenos Aires - Santiago')]");
     By selectFiltrarvuelos = By.xpath("//ul[@class=\"Tabs__UlElement-cncr__sc-61rlvo-0 evvvUR\"]");
 
-    By locatorCheckBoxsVuelos = By.xpath("//div[@class=\"FullWaySummary__WaySelectable-sc-43fbz2-0 fXPHoK\"]");
-    public void rechazarCookies(){
+    By locatorCheckBoxsVuelosIda = By.xpath("//div[@class=\"Tooltip___StyledMuiTooltip-sc-ya8k7d-3 gyqIyU\" and @aria-labelledby=\"mui-1\"]");
+
+    By locatorCheckBoxsVuelosVuelta = By.xpath("//div[@class=\"Tooltip___StyledMuiTooltip-sc-ya8k7d-3 gyqIyU\" and @aria-labelledby=\"mui-6\"]");
+
+
+    //Seccion Reserva
+
+    By inputNombreContactoLocator = By.xpath("//input[@data-test=\"input-name\"]");
+    By inputApellidoContactoLocator = By.xpath("//input[@data-test=\"input-surname\"]");
+    By inputEmailContactoLocator = By.xpath("//input[@id=\"contact-email\"]");
+    By inputTelefonoContactoLocator = By.xpath("//input[@data-test=\"input-phone\" ]//preceding::div[@class=\"selected-dial-code\"]");
+    By selectCarateristicaTelefonoContactoLocator = By.xpath("//div[@class=\"selected-dial-code\"]");
+    By inputDireccionContactoLocator = By.xpath("//input[@data-test=\"input-address\"]");
+    By inputNumeroCalleContactoLocator = By.xpath("//input[@data-test=\"input-houseNumber\"]");
+    By inputCodigoPostalContactoLocator = By.xpath("//input[@data-test=\"input-postCode\"]");
+    By inputCiudadContactoLocator = By.xpath("//input[@data-test=\"input-city\"]");
+    By selectPaisContactoLocator = By.xpath("//div[@class=\"selected-flag\"]");
+
+    By inputNombrePasajeroLocator = By.xpath("//input[@data-test=\"input-groups.1.travellers.1.name\"]");
+    By inputApellidoPasajeroLocator = By.xpath("//input[@data-test=\"input-groups.1.travellers.1.surname\"]");
+
+    By inputDiaNacimientoPasajeroLocator = By.xpath("//input[@data-test=\"input-groups.1.travellers.1.dateOfBirth-day\"]");
+    By selectMesNacimientoPasajeroLocator = By.xpath("//div[@data-test=\"date-month-input\"]");
+    By inputAnioNacimientoPasajeroLocator = By.xpath("//input[@data-test=\"input-groups.1.travellers.1.dateOfBirth-year\"]");
+
+    By btnSiguiente = By.xpath("//button[@data-test=\"lead-generation-submit-btn\"]");
+
+   By btnReservarAhora = By.xpath("//button[@data-test=\"submit-button\"]");
+
+   By btnElegirFlexible = By.xpath("//button[@class=\"Button-sc-1bbve8d-0 ghhXOt\"]");
+
+   By checkboxEquipaje = By.xpath("//label[@data-test=\"radio-label-selected\"]//preceding::div[@class=\"css-8nvty\"]");
+
+   public void rechazarCookies(){
         if(isEnabled(cookiesLocator)){
             click(rechazarCookiesLocator);
 
@@ -152,22 +184,73 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
     }
 
 
-    public void tildarOpcionIdayVuelta(boolean ida, boolean vuelta){
-        List <WebElement> checks = buscarElementosWeb(locatorCheckBoxsVuelos);
+    public void tildarOpcionIda(){
 
-        scrolling(checks.get(0));
+        switchToTabByTitleContains("Rumbo vuelos baratos Madrid - Santiago");
 
-        if(ida){
-            clickear(checks.get(0));
-        }
 
-        scrolling(checks.get(1));
 
-        if(vuelta){
-            clickear(checks.get(1));
-        }
+        click(locatorCheckBoxsVuelosIda);
+
 
     }
+
+    public void tildarOpcionVuelta(){
+
+        switchToTabByTitleContains("Rumbo vuelos baratos Madrid - Santiago");
+        click(locatorCheckBoxsVuelosVuelta);
+    }
+    public void ingresarDatosContacto(String nombre, String apellido, String email, String telefono, String direccion, String nroCalle, String codigoPostal, String ciudad){
+
+    write(nombre, inputNombreContactoLocator);
+    write(apellido, inputApellidoContactoLocator);
+    write(email, inputEmailContactoLocator);
+    scrolling(buscarElementoWeb(selectCarateristicaTelefonoContactoLocator));
+    write(telefono, inputTelefonoContactoLocator);
+    write(direccion, inputDireccionContactoLocator);
+    write(nroCalle, inputNumeroCalleContactoLocator);
+    write(codigoPostal, inputCodigoPostalContactoLocator);
+    write(ciudad, inputCiudadContactoLocator);
+    scrolling(buscarElementoWeb(selectPaisContactoLocator));
+
+
+
+
+
+    }
+
+    public void ingresarDatosPasajero(String nombre, String apellido, String diaNacimiento, String anioNacimiento){
+
+    write(nombre,inputNombrePasajeroLocator);
+    write(apellido, inputApellidoPasajeroLocator);
+    write(diaNacimiento, inputDiaNacimientoPasajeroLocator);
+    scrolling(buscarElementoWeb(selectMesNacimientoPasajeroLocator));
+    write(anioNacimiento, inputAnioNacimientoPasajeroLocator);
+
+
+    }
+    public void seleccionarTarifa(){
+        switchToTabByTitleContains(" Pago seguro - Rumbo");
+        scrolling(buscarElementoWeb(btnElegirFlexible));
+        click(btnElegirFlexible);
+    }
+    public void seleccionarEquipaje(){
+
+       scrolling(buscarElementoWeb(checkboxEquipaje));
+       click(checkboxEquipaje);
+    }
+    public void clickEnSiguiente(){
+
+    click(btnSiguiente);
+    }
+    public void seleccionarPrecio(){
+
+
+    }
+    public void reservarAhora(){
+        click(btnReservarAhora);
+    }
+
 
     public void navegarAlHome(){
         navigateTo(BASE_URL_AUT);

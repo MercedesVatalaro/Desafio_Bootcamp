@@ -74,8 +74,9 @@ public class TestVuelosRumbo extends SeleniumTestBase {
         Thread.sleep(5000);
         rumboHomePageVuelos.buscarVuelo();
         Thread.sleep(5000);
-        rumboHomePageVuelos.tildarOpcionIdayVuelta(true,true);
+        rumboHomePageVuelos.tildarOpcionIda();
         Thread.sleep(5000);
+        rumboHomePageVuelos.tildarOpcionVuelta();
 
 
 
@@ -100,19 +101,45 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     }
 
     @Test
-    public void CP0011_DatosReservaFaltaIngresarMedioDePago() {
+    public void CP0011_DatosReservaFaltaIngresarMedioDePago() throws InterruptedException {
     rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
     rumboHomePageVuelos.navegarAlHome();
     rumboHomePageVuelos.rechazarCookies();
-    rumboHomePageVuelos.ingresarOrigen("Sao Paulo (SAO)");
+    rumboHomePageVuelos.ingresarOrigen("Madrid");
     rumboHomePageVuelos.ingresarDestino("Cancún (CUN)");
     rumboHomePageVuelos.ingresarFecha();
     rumboHomePageVuelos.buscarVuelo();
+    rumboHomePageVuelos.tildarOpcionIda();
+    Thread.sleep(5000);
+    rumboHomePageVuelos.tildarOpcionVuelta();
+    rumboHomePageVuelos.seleccionarPrecio();
+    rumboHomePageVuelos.seleccionarTarifa();
+    rumboHomePageVuelos.ingresarDatosContacto(
+            "Juan",
+            "García",
+            "julianamartinez.1952@gmail.com",
+            "11 6789-5432",
+            "Casas",
+            "123",
+            "3400",
+            "Jujuy");
+    rumboHomePageVuelos.ingresarDatosPasajero(
+            "Martina",
+            "Lopez",
+            "08",
+            "1999");
+    rumboHomePageVuelos.seleccionarEquipaje();
+    rumboHomePageVuelos.clickEnSiguiente();
+    rumboHomePageVuelos.clickEnSiguiente();
+    rumboHomePageVuelos.reservarAhora();
+
+
+
 
     }
 
     @Test
-    public void CP0012_ReservaPersona_con_MovilidadReducida() {
+    public void CP0012_ReservaPersona_con_MovilidadReducida() throws InterruptedException {
         rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
         rumboHomePageVuelos.navegarAlHome();
         rumboHomePageVuelos.rechazarCookies();
@@ -120,6 +147,27 @@ public class TestVuelosRumbo extends SeleniumTestBase {
         rumboHomePageVuelos.ingresarDestino("Cancún (CUN)");
         rumboHomePageVuelos.ingresarFecha();
         rumboHomePageVuelos.buscarVuelo();
+        rumboHomePageVuelos.tildarOpcionIda();
+        Thread.sleep(5000);
+        rumboHomePageVuelos.tildarOpcionVuelta();
+        rumboHomePageVuelos.seleccionarPrecio();
+        rumboHomePageVuelos.seleccionarTarifa();
+        rumboHomePageVuelos.ingresarDatosContacto(
+                "Juan",
+                "García",
+                "julianamartinez.1952@gmail.com",
+                "11 6789-5432",
+                "Casas",
+                "123",
+                "3400",
+                "Jujuy");
+        rumboHomePageVuelos.ingresarDatosPasajero(
+                "Martina",
+                "Lopez",
+                "08",
+                "1999");
+
+        rumboHomePageVuelos.clickEnSiguiente();
 
     }
 
