@@ -28,6 +28,7 @@ public class TestHotelesRumbo extends SeleniumTestBase {
     public void CP0001_BusquedaAlojamiento_OK() throws InterruptedException {
         rumboHomePageHoteles= new RumboHomePageHoteles(super.driver);
         rumboHomePageHoteles.navigateTo("https://www.rumbo.es/");
+        rumboHomePageHoteles.aceptarCookies();
         rumboHomePageHoteles.ingresarSeccionHoteles();
         Thread.sleep(5000);
         rumboHomePageHoteles.buscarLugarAlojamiento("Barcelona");
@@ -40,6 +41,7 @@ public class TestHotelesRumbo extends SeleniumTestBase {
     public void CP0002_BusquedaAlojamiento_CantMaxPersonas () throws InterruptedException {
         rumboHomePageHoteles= new RumboHomePageHoteles(super.driver);
         rumboHomePageHoteles.navigateTo("https://www.rumbo.es/");
+        rumboHomePageHoteles.aceptarCookies();
         rumboHomePageHoteles.ingresarSeccionHoteles();
         Thread.sleep(5000);
         rumboHomePageHoteles.buscarLugarAlojamiento("Barcelona");
@@ -49,27 +51,68 @@ public class TestHotelesRumbo extends SeleniumTestBase {
     }
 
     @Test
-    public void CP0003_ReservaAlojamiento_PagoRechazado () throws InterruptedException {
+    public void CP0003_PagoRechazado_noOK () throws InterruptedException {
         rumboHomePageHoteles= new RumboHomePageHoteles(super.driver);
         rumboHomePageHoteles.navigateTo("https://www.rumbo.es/");
+        rumboHomePageHoteles.aceptarCookies();
         rumboHomePageHoteles.ingresarSeccionHoteles();
         Thread.sleep(5000);
         rumboHomePageHoteles.buscarLugarAlojamiento("Barcelona");
         Thread.sleep(5000);
         rumboHomePageHoteles.fechaEntradaSalida();
         rumboHomePageHoteles.buscarHotel();
-        rumboHomePageHoteles.ReservarHotel();
-
+        rumboHomePageHoteles.elegirHotel();
+        Thread.sleep(5000);
+        rumboHomePageHoteles.ingresarDatosReserva("Juliana", "Martinez", "julianamartinez.1452@gmail.com", 154123123, "Juliana Martinez", "123412341234", 10,24,123);
 
     }
-
     @Test
-    public void CP0003_ReservaAlojamiento_DatosUsuario_OK (){
+    public void CP004_ReservaHotel_CargaDatosOK () throws InterruptedException {
+        rumboHomePageHoteles= new RumboHomePageHoteles(super.driver);
+        rumboHomePageHoteles.navigateTo("https://www.rumbo.es/");
+        rumboHomePageHoteles.aceptarCookies();
+        rumboHomePageHoteles.ingresarSeccionHoteles();
+        Thread.sleep(5000);
+        rumboHomePageHoteles.buscarLugarAlojamiento("Barcelona");
+        Thread.sleep(5000);
+        rumboHomePageHoteles.fechaEntradaSalida();
+        rumboHomePageHoteles.buscarHotel();
+        Thread.sleep(5000);
+        rumboHomePageHoteles.elegirHotel();
+        Thread.sleep(5000);
+        rumboHomePageHoteles.ingresarDatosOk("Juliana", "Martinez", "julianamartinez.1452@gmail.com", 154123123, "Juliana Martinez", "5547301830746856", 8,23,123);
 
     }
+    @Test
+    public void CP005_ReservaHotel_PrecioVisible () throws InterruptedException {
+        rumboHomePageHoteles= new RumboHomePageHoteles(super.driver);
+        rumboHomePageHoteles.navigateTo("https://www.rumbo.es/");
+        rumboHomePageHoteles.aceptarCookies();
+        rumboHomePageHoteles.ingresarSeccionHoteles();
+        Thread.sleep(5000);
+        rumboHomePageHoteles.buscarLugarAlojamiento("Barcelona");
+        Thread.sleep(5000);
+        rumboHomePageHoteles.fechaEntradaSalida();
+        rumboHomePageHoteles.buscarHotel();
+        rumboHomePageHoteles.verificarPrecioHotel();
 
-
-
+    }
+    @Test
+    public void CP006_CargaDatosUsuarios_NO_OK () throws InterruptedException {
+        rumboHomePageHoteles= new RumboHomePageHoteles(super.driver);
+        rumboHomePageHoteles.navigateTo("https://www.rumbo.es/");
+        rumboHomePageHoteles.aceptarCookies();
+        rumboHomePageHoteles.ingresarSeccionHoteles();
+        Thread.sleep(5000);
+        rumboHomePageHoteles.buscarLugarAlojamiento("Barcelona");
+        Thread.sleep(5000);
+        rumboHomePageHoteles.fechaEntradaSalida();
+        rumboHomePageHoteles.buscarHotel();
+        Thread.sleep(5000);
+        rumboHomePageHoteles.elegirHotel();
+        Thread.sleep(5000);
+        rumboHomePageHoteles.ingresarDatosUsuario("Juliana", "Martinez", "julianamartinez.1452", 154123123);
+    }
 
     @Issue("123")
     @Issue("432")

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 import static framework.engine.utils.Constants.BASE_URL_AUT;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class RumboHomePageHoteles extends SeleniumWrapper {
 
@@ -22,33 +23,32 @@ public class RumboHomePageHoteles extends SeleniumWrapper {
     By seleccionFechaDeSalidaLocator = By.xpath("//body/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[2]/button[9]");
     By btnMasPersonasLocator = By.xpath("//body/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/section[1]/div[1]/div[2]/div[2]/button[2]");
     By btnBuscarHotelesLocator = By.xpath("//body/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[4]/div[1]/button[1]/div[1]/*[1]");
-    By selectPrimerHotelLocator= By.xpath("(//a[@class='sc-jFJHMl jtYlit'])[1]");
-    By btnReservarLocator = By.xpath("//button[@class='Button-sc-1bbve8d-0 bsSjVP Hero___StyledScrollToIdButton-sc-1pqg2ch-22 bZMZIZ']");
-    By btnSoloAlojamientoLocator = By.xpath("//body/div[@id='__next']/div[2]/section[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/button[1]");
-    By btnContinuarReservaLocator = By.xpath("//button[normalize-space()='Continuar']");
+    By txtPrecioLocator = By.xpath("//div[@class='sc-rZqKh jEcotq']/div[1]//span[@class='sc-iqavZe kDhOEP']");
+    By selectHotelLocator = By.xpath("//body/div[@id='__next']/main[1]/div[1]/div[1]/div[2]/div[1]/a[1]");
+    By btnContinuarReservaLocator = By.xpath("//div[@class='HotelPageRoomSection___StyledRoomPanel-sc-1mmoe2k-1 bCAKwe']//div[@class='RoomPanelMealPlanStructure__MealPlanStructureContainer-sc-guxc13-0 zhNTC RoomPanel___StyledMealPlanStructure-sc-szpnyn-21 JuwoH']/div[1]/div[1]//button[@class='Button-sc-1bbve8d-0 RoomPanelMealPlan___StyledButton-sc-u6tmcf-26 gRWIbt jrBcJL']");
+    By selectSoloAlojamientoLocator = By.xpath("//body/div[@id='__next']/div[2]/section[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]");
     By txtNombreLocator = By.xpath("//input[@name='name']");
     By txtApellidoLocator = By.xpath("//input[@name='surname']");
-    By cbCodigoAreaLocator = By.xpath("//li[@class='country highlight preferred']//span[@class='country-name'][normalize-space()='Argentina']");
+    By txtEmailLocator= By.xpath("//input[@id='contact-email']");
     By txtTelefonoLocator = By.xpath("//input[@name='phone']");
-    By selectorNoProtegerViajeLocator = By.xpath("//label[@class='insurance__noThanks-radio-label']//span[@class='circle']");
-    By txtBonoDescuentoLocator = By.xpath("//input[@name='voucher']");
-    By btnAplicarDescuentoLocator = By.xpath("//div[contains(text(),'Aplicar')]");
-    By selectorTarjetaCreditoDebitoLocator = By.xpath("//span[@data-test='radio-paymentGroups-creditCard-custom-radio']//span[@class='check']");
-    By txtNombreTitularTarjetaLocator = By.xpath("(//input[@name='creditCard.cardHolder'])[1]");
-    By txtNumeroTarjetaLocator = By.xpath("(//input[@name='creditCard.cardNumber'])[1]");
+    By checkNoProtegerViajeLocator = By.xpath("//label[@class='insurance__noThanks-radio-label']/span[@class='check']");
+    By checkTarjetaCreditoLocator = By.xpath("//label[@id='radio-paymentGroups-creditCard-label']//span[@class='check']");
+    By txtNombreTitularTarjetaLocator = By.xpath("//input[@name='creditCard.cardHolder']");
+    By txtNumeroTarjetaLocator = By.xpath("//input[@name='creditCard.cardNumber']");
     By txtMesTarjetaLocator = By.xpath("//input[@placeholder='MM']");
     By txtYearTarjetaLocator = By.xpath("//input[@placeholder='AA']");
     By txtCVVLocator = By.xpath("//input[@name='creditCard.cvv']");
-    By selectorOfertasLocator = By.xpath("//span[@data-test='privacyPolicy-check']");
+
 
     //methods
 
-
-    public void ingresarSeccionHoteles() {
+    public void aceptarCookies (){
         click(btnCookiesAceptarLocator);
+    }
+    public void ingresarSeccionHoteles() {
+
         click(btnHotelesLocator);
     }
-
     public void buscarLugarAlojamiento ( String lugar){
 
        // WebElement esperarAlojamiento = findElement(buscarAlojamientoEnLocator);
@@ -56,7 +56,6 @@ public class RumboHomePageHoteles extends SeleniumWrapper {
         write(lugar, buscarAlojamientoEnLocator);
         click(primerOpcionAlojamientoEnLocator);
     }
-
 
     public void fechaEntradaSalida () throws InterruptedException {
 
@@ -68,6 +67,7 @@ public class RumboHomePageHoteles extends SeleniumWrapper {
     public void buscarHotel() throws InterruptedException {
         click(btnBuscarHotelesLocator);
         Thread.sleep(3000);
+
     }
 
     public void clickCantMaximaPersonas() {
@@ -82,15 +82,91 @@ public class RumboHomePageHoteles extends SeleniumWrapper {
         }
     }
 
-    public void ReservarHotel () throws InterruptedException {
-        click(selectPrimerHotelLocator);
+    public void elegirHotel () throws InterruptedException {
+        click(selectHotelLocator);
+        Thread.sleep(5000);
+        switchToTabByTitleContains("Pago seguro - Rumbo");
+        scroll(selectSoloAlojamientoLocator);
+        Thread.sleep(5000);
+        click(btnContinuarReservaLocator);
         Thread.sleep(15000);
-        scrolling(buscarElementoWeb(btnReservarLocator));
-        Thread.sleep(2000);
-        click(btnReservarLocator);
-        //scrolling(buscarElementoWeb(btnReservarLocator));
-        //Thread.sleep(2000);
-        //click(btnSoloAlojamientoLocator);
+
+    }
+
+    public void verificarPrecioHotel () {
+
+        buscarElementosWeb(txtPrecioLocator);
+
+        String precio = obtenerTexto(txtPrecioLocator);
+
+        if(!precio.isEmpty()) {
+            System.out.println("El precio es: " + precio);
+            } else {
+            System.out.println("El precio está vacío");
+            }
+    }
+
+    public void ingresarDatosReserva (String nombre, String apellido, String email, int telefono
+                                      ,String tarjetaNom, String tarjetaNum, int mes, int year, int cvv)
+                                        throws InterruptedException {
+
+        write(nombre, txtNombreLocator);
+        write(apellido, txtApellidoLocator);
+        write(email, txtEmailLocator);
+        Thread.sleep(5000);
+        write(String.valueOf(telefono), txtTelefonoLocator);
+        Thread.sleep(5000);
+        scroll(checkNoProtegerViajeLocator);
+        Thread.sleep(5000);
+        click(checkNoProtegerViajeLocator);
+        Thread.sleep(5000);
+        scroll(checkTarjetaCreditoLocator);
+        click(checkTarjetaCreditoLocator);
+        Thread.sleep(5000);
+        write(tarjetaNom,txtNombreTitularTarjetaLocator);
+        write(tarjetaNum, txtNumeroTarjetaLocator);
+        write(String.valueOf(mes), txtMesTarjetaLocator);
+        write(String.valueOf(year), txtYearTarjetaLocator);
+        write(String.valueOf(cvv), txtCVVLocator);
+        Thread.sleep(5000);
+        System.out.println("DATOS DE LA TARJETA INCORRECTOS");
+    }
+
+    public void ingresarDatosOk (String nombre, String apellido, String email, int telefono
+            ,String tarjetaNom, String tarjetaNum, int mes, int year, int cvv)
+            throws InterruptedException {
+
+        write(nombre, txtNombreLocator);
+        write(apellido, txtApellidoLocator);
+        write(email, txtEmailLocator);
+        Thread.sleep(5000);
+        write(String.valueOf(telefono), txtTelefonoLocator);
+        Thread.sleep(5000);
+        scroll(checkNoProtegerViajeLocator);
+        Thread.sleep(5000);
+        click(checkNoProtegerViajeLocator);
+        Thread.sleep(5000);
+        scroll(checkTarjetaCreditoLocator);
+        click(checkTarjetaCreditoLocator);
+        Thread.sleep(5000);
+        write(tarjetaNom,txtNombreTitularTarjetaLocator);
+        write(tarjetaNum, txtNumeroTarjetaLocator);
+        write(String.valueOf(mes), txtMesTarjetaLocator);
+        write(String.valueOf(year), txtYearTarjetaLocator);
+        write(String.valueOf(cvv), txtCVVLocator);
+        Thread.sleep(5000);
+        System.out.println("DATOS INGRESADOS CORRECTOS");
+    }
+
+    public void ingresarDatosUsuario (String nombre, String apellido, String email, int telefono) throws InterruptedException {
+
+        write(nombre, txtNombreLocator);
+        write(apellido, txtApellidoLocator);
+        write(email, txtEmailLocator);
+        Thread.sleep(5000);
+        write(String.valueOf(telefono), txtTelefonoLocator);
+        Thread.sleep(5000);
+        System.out.println("DATOS INGRESADOS INCORRECTOS");
     }
 
 

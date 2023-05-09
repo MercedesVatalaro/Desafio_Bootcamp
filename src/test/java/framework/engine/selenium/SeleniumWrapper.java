@@ -10,13 +10,14 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+
 import java.util.List;
 
 
 public class SeleniumWrapper {
 
 
-    private final WebDriver driver;
+    private static  WebDriver driver;
     private Select select;
     private WebDriverWait wait;
     private JavascriptExecutor js;
@@ -93,7 +94,7 @@ public class SeleniumWrapper {
         // Hacer clic en un enlace que abre una nueva pestaña
         driver.findElement(By.linkText("Abrir nueva pestaña")).click();
 
-// Esperar a que se abra la nueva pestaña y cambiar el enfoque
+        // Esperar a que se abra la nueva pestaña y cambiar el enfoque
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.numberOfWindowsToBe(2));
         for (String windowHandle : driver.getWindowHandles()) {
@@ -106,13 +107,13 @@ public class SeleniumWrapper {
     }
 
     public void switchToTabByTitleContains(String searchStr) {
- for (String ventana : driver.getWindowHandles()) {
- driver.switchTo().window(ventana);
- if (driver.getTitle().contains(searchStr)) {
-return;
- }
- }
- }
+        for (String ventana : driver.getWindowHandles()) {
+            driver.switchTo().window(ventana);
+        if (driver.getTitle().contains(searchStr)) {
+            return;
+            }
+        }
+    }
     public List <WebElement> buscarElementosWeb(By localizador){
         return driver.findElements(localizador);
     }
@@ -129,8 +130,13 @@ return;
         return driver.getTitle();
     }
 
+    public void seleccionarComboBoxPorTextoVisible(WebElement elemento, String valor){
+        select = new Select(elemento);
+        select.selectByVisibleText(valor);
 
+    }
     public void escribir (String texto, WebElement elemento){
+
         elemento.sendKeys(texto);
         elemento.click();
     }
@@ -161,18 +167,6 @@ return;
 
     }
 
-    public void scroll(int horizontal, int vertical) {
-        ((JavascriptExecutor) driver).executeScript("scroll(" + horizontal + "," + vertical + ")");
-    }
-
-
-
-    public void seleccionarComboBoxPorTextoVisible(WebElement elemento, String valor){
-        select = new Select(elemento);
-        select.selectByVisibleText(valor);
-
-    }
-
     public WebElement esperarPorElementoVisible (WebElement elemento){
         wait = new WebDriverWait(driver, 20);
 
@@ -185,6 +179,6 @@ return;
     public void scroll(By locator) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", findElement(locator));
 
-
     }
+
 }
