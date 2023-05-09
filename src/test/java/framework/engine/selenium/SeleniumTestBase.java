@@ -22,16 +22,14 @@ public class SeleniumTestBase {
     }
 
     @BeforeEach
-    void webDriverSetup(){
+    void webDriverSetup() {
         String browserName = properties.getProperty("browser");
         driverFactory = new DriverFactory();
         driver = driverFactory.inicializarDriver(browserName);
     }
 
     @AfterEach
-
-    void close(){
-
+    void close() {
         driver.quit();
     }
 

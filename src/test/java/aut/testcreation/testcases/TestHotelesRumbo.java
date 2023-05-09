@@ -1,6 +1,5 @@
 package aut.testcreation.testcases;
 
-import aut.testcreation.pages.ReservaPage;
 import aut.testcreation.pages.RumboHomePageHoteles;
 import framework.engine.selenium.SeleniumTestBase;
 import framework.engine.selenium.DriverFactory;
@@ -17,11 +16,11 @@ import org.openqa.selenium.WebDriver;
 import static framework.engine.utils.Constants.BASE_URL_AUT;
 import static org.junit.Assert.assertFalse;
 
-public class TestHoteles extends SeleniumTestBase {
+public class TestHotelesRumbo extends SeleniumTestBase {
     WebDriver driver;
 
     RumboHomePageHoteles rumboHomePageHoteles;
-    ReservaPage reservaPage;
+
 
 
 
