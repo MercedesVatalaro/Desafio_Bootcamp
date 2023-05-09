@@ -26,7 +26,7 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     public void CP0007_DatosVueloDebeElegirDestino() throws InterruptedException {
 
     rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
-    rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
+    rumboHomePageVuelos.navegarAlHome();
     rumboHomePageVuelos.rechazarCookies();
     Thread.sleep(5000);
     rumboHomePageVuelos.ingresarOrigen("Buenos Aires (BUE)");
@@ -44,7 +44,7 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     @Test //OK
     public void CP0008_DatosVueloAniadirHotel() throws InterruptedException {
     rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
-        rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
+        rumboHomePageVuelos.navegarAlHome();
         rumboHomePageVuelos.rechazarCookies();
         Thread.sleep(5000);
         rumboHomePageVuelos.ingresarOrigen("Buenos Aires (BUE)");
@@ -63,7 +63,7 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     @Test
     public void CP0009_DatosVuelo_Y_SeleccionVuelo() throws InterruptedException {
         rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
-        rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
+        rumboHomePageVuelos.navegarAlHome();
         rumboHomePageVuelos.rechazarCookies();
         Thread.sleep(5000);
         rumboHomePageVuelos.ingresarOrigen("Madrid");
@@ -84,7 +84,7 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     @Test
     public void CP0010_reservaVuelomasRapido() throws InterruptedException {
         rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
-        rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
+        rumboHomePageVuelos.navegarAlHome();
         rumboHomePageVuelos.rechazarCookies();
         Thread.sleep(5000);
         rumboHomePageVuelos.ingresarOrigen("Madrid");
@@ -102,7 +102,7 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     @Test
     public void CP0011_DatosReservaFaltaIngresarMedioDePago() {
     rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
-    rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
+    rumboHomePageVuelos.navegarAlHome();
     rumboHomePageVuelos.rechazarCookies();
     rumboHomePageVuelos.ingresarOrigen("Sao Paulo (SAO)");
     rumboHomePageVuelos.ingresarDestino("Cancún (CUN)");
@@ -114,7 +114,7 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     @Test
     public void CP0012_ReservaPersona_con_MovilidadReducida() {
         rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
-        rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
+        rumboHomePageVuelos.navegarAlHome();
         rumboHomePageVuelos.rechazarCookies();
         rumboHomePageVuelos.ingresarOrigen("Sao Paulo (SAO)");
         rumboHomePageVuelos.ingresarDestino("Cancún (CUN)");
