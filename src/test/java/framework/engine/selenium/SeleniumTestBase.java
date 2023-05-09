@@ -32,7 +32,7 @@ public class SeleniumTestBase {
 
     void close(){
 
-        //driver.quit();
+        driver.quit();
     }
 
 }
