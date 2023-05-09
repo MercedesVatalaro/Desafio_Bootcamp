@@ -21,16 +21,13 @@ public class SeleniumWrapper {
     private WebDriverWait wait;
     private JavascriptExecutor js;
 
-    protected final WebDriver driver;
-    private JavascriptExecutor js;
+    public SeleniumWrapper(WebDriver driver) {
+        this.driver = driver;
+
+    }
 
 
     //Constructor Base
-    public SeleniumWrapper(WebDriver driver){
-        this.driver = driver;
-    }
-
-    //Wrappers Selenium
     public WebElement findElement(By locator){
         return driver.findElement(locator);
     }
@@ -58,7 +55,9 @@ public class SeleniumWrapper {
 
         elemento.click();
     }
-
+    public WebElement buscarElementoWeb(By localizador) {
+        return driver.findElement(localizador);
+    }
     public Boolean isDisplayed(By locator) {
         try {
             return driver.findElement(locator).isDisplayed();
@@ -131,15 +130,7 @@ return;
     }
 
 
-    public WebElement buscarElementoWeb (By localizador){
-        return driver.findElement(localizador);
-    }
-
-    public List<WebElement> buscarElementosWeb (By localizador){
-        return driver.findElements(localizador);
-    }
-
-     public void escribir (String texto, WebElement elemento){
+    public void escribir (String texto, WebElement elemento){
         elemento.sendKeys(texto);
         elemento.click();
     }
@@ -173,14 +164,8 @@ return;
     public void scroll(int horizontal, int vertical) {
         ((JavascriptExecutor) driver).executeScript("scroll(" + horizontal + "," + vertical + ")");
     }
-    public void scrolling (WebElement elemento){
-        js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", elemento); //hace scroll hasta encontrar el elemento
-    }
-    public void scrolling (By locator){
-        js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", locator); //hace scroll hasta encontrar el elemento
-    }
+
+
 
     public void seleccionarComboBoxPorTextoVisible(WebElement elemento, String valor){
         select = new Select(elemento);
@@ -194,6 +179,12 @@ return;
         return wait.until(ExpectedConditions.visibilityOf(elemento));
     }
 
+    public void clickear(WebElement elemento){
+        elemento.click();
+    }
+    public void scroll(By locator) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", findElement(locator));
 
 
+    }
 }

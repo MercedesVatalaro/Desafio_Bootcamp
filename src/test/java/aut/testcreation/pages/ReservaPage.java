@@ -5,6 +5,6 @@ import org.openqa.selenium.WebDriver;
 
 public class ReservaPage extends SeleniumWrapper {
     public ReservaPage(WebDriver driver) {
-        super(driver);
+        super(driver, js);
     }
 }
