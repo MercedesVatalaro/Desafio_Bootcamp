@@ -1,14 +1,8 @@
 package aut.testcreation.pages;
 
-import framework.engine.selenium.DriverFactory;
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 import static framework.engine.utils.Constants.BASE_URL_AUT;
 import static org.junit.Assert.assertFalse;

@@ -1,16 +1,19 @@
 package framework.engine.selenium;
 
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+<<<<<<< HEAD
 import java.time.Duration;
+=======
+>>>>>>> cf7b1647873e9384531a09a57efca777d0f71b67
 import java.util.List;
 
 
@@ -22,13 +25,13 @@ public class SeleniumWrapper {
     private WebDriverWait wait;
     private JavascriptExecutor js;
 
-
-    //Constructor Base
-    public SeleniumWrapper(WebDriver driver){
+    public SeleniumWrapper(WebDriver driver) {
         this.driver = driver;
+
     }
 
-    //Wrappers Selenium
+
+    //Constructor Base
     public WebElement findElement(By locator){
         return driver.findElement(locator);
     }
@@ -51,10 +54,14 @@ public class SeleniumWrapper {
     public void click(By locator){
         driver.findElement(locator).click();
     }
+
     public void click(WebElement elemento){
+
         elemento.click();
     }
-
+    public WebElement buscarElementoWeb(By localizador) {
+        return driver.findElement(localizador);
+    }
     public Boolean isDisplayed(By locator) {
         try {
             return driver.findElement(locator).isDisplayed();
@@ -85,7 +92,39 @@ public class SeleniumWrapper {
         WebElement enviarDatos = driver.findElement(locator);
         enviarDatos.submit();
     }
+    public void cambiarDePestania() {
 
+        // Hacer clic en un enlace que abre una nueva pestaña
+        driver.findElement(By.linkText("Abrir nueva pestaña")).click();
+
+// Esperar a que se abra la nueva pestaña y cambiar el enfoque
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+        for (String windowHandle : driver.getWindowHandles()) {
+            String originalWindowHandle = driver.getCurrentUrl();
+            if (!windowHandle.equals(originalWindowHandle)) {
+                driver.switchTo().window(windowHandle);
+                break;
+            }
+        }
+    }
+
+    public void switchToTabByTitleContains(String searchStr) {
+ for (String ventana : driver.getWindowHandles()) {
+ driver.switchTo().window(ventana);
+ if (driver.getTitle().contains(searchStr)) {
+return;
+ }
+ }
+ }
+    public List <WebElement> buscarElementosWeb(By localizador){
+        return driver.findElements(localizador);
+    }
+
+    public void scrolling(WebElement elemento){
+        js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", elemento);
+    }
     public void navigateTo(String url){
         driver.navigate().to(url);
     }
@@ -95,6 +134,7 @@ public class SeleniumWrapper {
     }
 
 
+<<<<<<< HEAD
     public WebElement buscarElementoWeb (By localizador){
 
         return driver.findElement(localizador);
@@ -112,6 +152,9 @@ public class SeleniumWrapper {
     }
 
      public void escribir (String texto, WebElement elemento){
+=======
+    public void escribir (String texto, WebElement elemento){
+>>>>>>> cf7b1647873e9384531a09a57efca777d0f71b67
         elemento.sendKeys(texto);
         elemento.click();
     }
@@ -145,6 +188,7 @@ public class SeleniumWrapper {
     public void scroll(int horizontal, int vertical) {
         ((JavascriptExecutor) driver).executeScript("scroll(" + horizontal + "," + vertical + ")");
     }
+<<<<<<< HEAD
     public void scrolling (WebElement elemento){
         js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", elemento); //hace scroll hasta encontrar el elemento
@@ -153,6 +197,16 @@ public class SeleniumWrapper {
         js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", locator); //hace scroll hasta encontrar el elemento
     }*/
+=======
+
+
+
+    public void seleccionarComboBoxPorTextoVisible(WebElement elemento, String valor){
+        select = new Select(elemento);
+        select.selectByVisibleText(valor);
+
+    }
+>>>>>>> cf7b1647873e9384531a09a57efca777d0f71b67
 
     public WebElement esperarPorElementoVisible (WebElement elemento){
         wait = new WebDriverWait(driver, 20);
@@ -160,7 +214,16 @@ public class SeleniumWrapper {
         return wait.until(ExpectedConditions.visibilityOf(elemento));
     }
 
+    public void clickear(WebElement elemento){
+        elemento.click();
+    }
+    public void scroll(By locator) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", findElement(locator));
 
 
+<<<<<<< HEAD
 
+=======
+    }
+>>>>>>> cf7b1647873e9384531a09a57efca777d0f71b67
 }
