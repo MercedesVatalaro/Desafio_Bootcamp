@@ -181,23 +181,7 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
 
     }
 
-    /*public void seleccionarVueloIda() throws InterruptedException {
 
-        switchToTabByTitleContains("Rumbo vuelos baratos Madrid - Santiago");
-        if(isEnabled(selectOpcionesIda)){
-
-        click(tildeOpcionIdaElegida);
-        }
-
-
-    }
-
-    public void seleccionarVueloVuelta() {
-        if (isEnabled(selectOpcionesVuelta)) {
-
-            click(tildeOpcionVueltaElegida);
-        }
-    }*/
     public void tildarOpcionIdayVuelta(boolean ida, boolean vuelta){
         List <WebElement> checks = buscarElementosWeb(locatorCheckBoxsVuelos);
 
