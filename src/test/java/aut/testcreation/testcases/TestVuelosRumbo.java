@@ -21,14 +21,18 @@ public class TestVuelosRumbo extends SeleniumTestBase {
 
 
     @Test //OK
-    public void CP0007_DatosVueloDebeElegirDestino() {
+    public void CP0007_DatosVueloDebeElegirDestino() throws InterruptedException {
     rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
     rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
     rumboHomePageVuelos.rechazarCookies();
+    Thread.sleep(5000);
     rumboHomePageVuelos.ingresarOrigen("Buenos Aires (BUE)");
+    Thread.sleep(5000);
     rumboHomePageVuelos.borrarInputDestino();
+    Thread.sleep(5000);
     rumboHomePageVuelos.ingresarFecha();
-    rumboHomePageVuelos.buscarVuelo();
+    Thread.sleep(5000);
+    rumboHomePageVuelos.buscarVuelo();Thread.sleep(5000);
     Assertions.assertEquals("Introduce ciudad o aeropuerto de destino", rumboHomePageVuelos.mensajeErrorIngreseDestino());
 
 
@@ -37,15 +41,21 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     }
 
     @Test //OK
-    public void CP0008_DatosVueloAniadirHotel(){
+    public void CP0008_DatosVueloAniadirHotel() throws InterruptedException {
     rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
         rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
         rumboHomePageVuelos.rechazarCookies();
+        Thread.sleep(5000);
         rumboHomePageVuelos.ingresarOrigen("Buenos Aires (BUE)");
+        Thread.sleep(5000);
         rumboHomePageVuelos.ingresarDestino("Santiago (SCL)");
+        Thread.sleep(5000);
         rumboHomePageVuelos.ingresarFecha();
+        Thread.sleep(5000);
         rumboHomePageVuelos.aniadirHotel();
+        Thread.sleep(5000);
         rumboHomePageVuelos.buscarVuelo();
+
 
     }
 
@@ -54,25 +64,36 @@ public class TestVuelosRumbo extends SeleniumTestBase {
         rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
         rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
         rumboHomePageVuelos.rechazarCookies();
-        rumboHomePageVuelos.ingresarOrigen("Buenos Aires (BUE)");
+        Thread.sleep(5000);
+        rumboHomePageVuelos.ingresarOrigen("Madrid");
+        Thread.sleep(5000);
         rumboHomePageVuelos.ingresarDestino("Santiago (SCL)");
+        Thread.sleep(5000);
         rumboHomePageVuelos.ingresarFecha();
+        Thread.sleep(5000);
         rumboHomePageVuelos.buscarVuelo();
-        rumboHomePageVuelos.seleccionarVueloIda();
-        rumboHomePageVuelos.seleccionarVueloVuelta();
+        Thread.sleep(5000);
+        rumboHomePageVuelos.tildarOpcionIdayVuelta(true,true);
+        Thread.sleep(5000);
+
 
 
     }
 
     @Test
-    public void CP0010_reservaVuelomasRapido(){
+    public void CP0010_reservaVuelomasRapido() throws InterruptedException {
         rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
         rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
         rumboHomePageVuelos.rechazarCookies();
-        rumboHomePageVuelos.ingresarOrigen("Sao Paulo (SAO)");
+        Thread.sleep(5000);
+        rumboHomePageVuelos.ingresarOrigen("Madrid");
+        Thread.sleep(5000);
         rumboHomePageVuelos.ingresarDestino("Cancún (CUN)");
+        Thread.sleep(5000);
         rumboHomePageVuelos.ingresarFecha();
+        Thread.sleep(5000);
         rumboHomePageVuelos.buscarVuelo();
+        Thread.sleep(5000);
         rumboHomePageVuelos.seleccionarMasRapido();
 
     }
