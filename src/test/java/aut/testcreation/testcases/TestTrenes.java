@@ -55,8 +55,15 @@ public class TestTrenes extends SeleniumTestBase {
         rumboTrenesPage.rechazarCookies();
 
 
+
     }
 
+    public void CP0016_DatosdeReservaViajestren(){
+        rumboTrenesPage = new RumboTrenesPage(super.driver);
+        rumboTrenesPage.navigateTo("https://www.rumbo.es/");
+        rumboTrenesPage.rechazarCookies();
+
+    }
 
 
 
