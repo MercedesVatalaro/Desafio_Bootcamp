@@ -12,31 +12,51 @@ public class TestTrenes extends SeleniumTestBase {
 
     RumboTrenesPage rumboTrenesPage;
 
-    @Test
-    public void CP0013_BusquedadeBoletosTrenes31Noches(){
+    @Test //OK
+    public void CP0013_BusquedadeBoletosTrenes31Noches()throws InterruptedException{
         rumboTrenesPage = new RumboTrenesPage(super.driver);
         rumboTrenesPage.navigateTo("https://www.rumbo.es/");
         rumboTrenesPage.rechazarCookies();
-        rumboTrenesPage.ingresarOrigen("Madrid (Mad)");
-        rumboTrenesPage.ingresarDestino("Cordoba (Cor)");
+        rumboTrenesPage.ingresarSeccionTrenes();
+        Thread.sleep(5000);
+        rumboTrenesPage.BuscarOrigen("Madrid (Mad)");
+        Thread.sleep(5000);
+        rumboTrenesPage.BuscarDestino("Cordoba (Cor)");
+        Thread.sleep(5000);
         rumboTrenesPage.fechaIdaVuelta();
 
-        Assertions.assertEquals("ILo sentimos, no se pueden reservar más de 31 noches", rumboTrenesPage.mensajedeErrorFecha());
+        Assertions.assertEquals("Lo sentimos, no se pueden reservar más de 31 noches", rumboTrenesPage.mensajedeErrorFecha());
+
+
+    }
+
+    @Test //OK
+    public void CP00014_DatosViajeTrenesHotel() throws InterruptedException {
+        rumboTrenesPage = new RumboTrenesPage(super.driver);
+        rumboTrenesPage.navigateTo("https://www.rumbo.es/");
+        rumboTrenesPage.rechazarCookies();
+        rumboTrenesPage.ingresarSeccionTrenesHotel();
+        Thread.sleep(5000);
+        rumboTrenesPage.BuscarOrigen("Madrid (Mad)");
+        Thread.sleep(5000);
+        rumboTrenesPage.BuscarDestino("Cordoba (Cor)");
+        Thread.sleep(5000);
+        rumboTrenesPage.fechaIdaVueltaTH();
+        rumboTrenesPage.agregarPersonayHotel();
+        rumboTrenesPage.bntBuscar();
 
 
     }
 
     @Test
-    public void CP00014_DatosViajeTrenesHotel() {
+    public void CP0015_DatosdeReserva_DniNoIngresado (){
         rumboTrenesPage = new RumboTrenesPage(super.driver);
         rumboTrenesPage.navigateTo("https://www.rumbo.es/");
         rumboTrenesPage.rechazarCookies();
-        rumboTrenesPage.ingresarOrigen("Buenos Aires (BUE)");
-        rumboTrenesPage.ingresarDestino("Santiago (SCL)");
-        rumboTrenesPage.fechaIdaVuelta();
 
 
     }
+
 
 
 

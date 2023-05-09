@@ -17,37 +17,28 @@ public class RumboTrenesPage extends SeleniumWrapper {
     By rechazarCookiesLocator = By.xpath("//button[contains(text(), 'Rechazar todo')]");
 
 
-    By itemTrenes = By.xpath("//a[contains(@class, 'evvzyi82')]");
+    By btnTrenes = By.xpath("(//a[@title='Trenes'][normalize-space()='Trenes'])[1]");
 
 
-    By origenLocator = By.xpath("//input[@id=\":Rmhl6lalaqlql2m:\"]");
-    By itemOrigenLocator = By.name("Madrid (madr)");
+    By BuscarOrigenLocator = By.xpath("(//input[@id=\":Rmhl6lalaqlql2m:\"])[1]");
 
-    By destinoLocator = By.xpath("//input[@id=\":Rqhl6lalaqlql2m:\"]");
-    By itemDestinoLocator = By.name("Cordoba (Cor)");
+    By primerOpcionOrigenEnLocator = By.xpath("//li[@id=':Rmhl6lalaqlql2m:-option-8']");
 
-    By origenVacioLocator = By.xpath("//input[@value=\"\" and @aria-label=\"Origen\"]");
-    By destinoVacioLocator= By.xpath("//input[@value=\"\" and @aria-label=\"Destino\"]");
+    By BuscarDestinoLocator = By.xpath("(//input[@id=\":Rqhl6lalaqlql2m:\"])[1]");
+    By primerOpcionDestinoEnLocator = By.xpath("//li[@id=':Rqhl6lalaqlql2m:-option-8']");
 
-    By inputFechaIdaLocator= By.xpath("//button[@aria-label=\"Fecha de ida\"]");
-    By inputFechaVueltaLocator= By.xpath("//button[@aria-label=\"Fecha de vuelta\"]");
+    By seleccionFechaIdaLocator = By.xpath("//body/div[1]/div[2]/div/div[2]/div/div/div[5]/div/div/div/div/div/form/div[2]/div[2]/div[1]/div/div/div/div/section/div/div/div[2]/div[2]/button[6]");
+    By seleccionFechaVueltaLocator = By.xpath("//body/div[1]/div[2]/div/div[2]/div/div/div[5]/div/div/div/div/div/form/div[2]/div[2]/div[1]/div/div/div/div/section/div/div/div[3]/div[2]/button[16]");
 
-    By selectorFechaIdaLocator = By.xpath("//button[@class=\"d-1kuzy14\" and contains(number(), '16')]//ancestor::div[@aria-labelledby=\"5\"]");
-
-    By selectorFechaVueltaLocator = By.xpath("//button[@class=\"d-1kuzy14\" and contains(number(), '31')]//ancestor::div[@aria-labelledby=\"5\"]");
     By mjeError31DiasMas= By.xpath("//span[@class=\"d-1toc9z2\" and contains(text(), 'Lo sentimos, no se pueden reservar más de 31 noches')]");
 
-    By itemTrenesHotel = By.xpath("//div[@class=\"tab-button selected evvzyi82 d-1l2p86v )\"]");
 
-    By selecorigenLocator = By.xpath("//input[@id=\':Rmhl6lalaqlql2m:\']");
+    By btnSelecPersonasMasHabitacionLocator = By.xpath("//body/div[1]/div[2]/div/div[2]/div/div/div[5]/div/div/div/div/div/form/div[2]/div[3]/div/div/div/button");
+    By btnBuscarLocator = By.xpath("//body/div[1]/div[2]/div/div[2]/div/div/div[5]/div/div/div/div/div/form/div[2]/div[4]/div/button");
 
-    By DestinoLocator = By.xpath("//input[@id=\'d-1r0xobh ed5mks91\']");
-
-    By pasajerosLocatortreh = By.xpath("//button[@class=\"d-1vl9gkt\"]");
-
-    By cargaPasajerosLocator = By.xpath("//div[@class=\\\"d-1k5t2mm\\\"]");
-    By btnBuscarLocator = By.xpath("//button[@class=\"d-1jmk4ql\"]//ancestor::div[@class=\"d-xxdz9z\"]");
-
+    By btnTrenesHotel = By.xpath("//div[@class='d-1ytebqy e10w470p3']//a[.='Tren + Hotel']");
+    By selecFechaIdaTHLocator = By.xpath("//body/div[1]/div[2]/div/div[2]/div/div/div[5]/div/div/div/div/div/form/div[2]/div[2]/div[1]/div/div/div/div/section/div/div/div[2]/div[2]/button[6]");
+    By selecFechaVueltaTHLocator = By.xpath("//body/div[1]/div[2]/div/div[2]/div/div/div[5]/div/div/div/div/div/form/div[2]/div[2]/div[1]/div/div/div/div/section/div/div/div[2]/div[2]/button[6]");
     By txtNombreLocator = By.xpath("//input[@name='name']");
     By txtApellidoLocator = By.xpath("//input[@name='surname']");
     By txtTelefonoLocator = By.xpath("//input[@name='phone']");
@@ -82,37 +73,34 @@ public class RumboTrenesPage extends SeleniumWrapper {
         }
 
     }
+    public void ingresarSeccionTrenes() {
+        click(btnTrenes);
 
-    public void ingresarOrigen(String origen) {
-
-
-        click(origenLocator);
-        clear(origenLocator);
-        isSelected(origenVacioLocator);
-        write(origen, origenLocator);
-
-        if (isDisplayed(origenLocator)) {
-            click(inputOrigenMadrid);
-        }
     }
 
-    public void ingresarDestino(String destino) {
 
 
-        click(destinoLocator);
-        clear(destinoLocator);
-        isSelected(destinoVacioLocator);
-        write(destino, destinoLocator);
+    public void BuscarOrigen ( String lugar){
 
-        if (isDisplayed(destinoLocator)) {
-            click(inputDestinoCordoba);
-        }
+
+        click(BuscarOrigenLocator);
+        write(lugar, BuscarOrigenLocator);
+        click(primerOpcionOrigenEnLocator);
     }
 
-    public void fechaIdaVuelta() throws InterruptedException {
-            click(selectorFechaIdaLocator);
-            Thread.sleep(5000);
-            click(selectorFechaVueltaLocator);
+    public void BuscarDestino ( String lugar){
+
+
+        click(BuscarDestinoLocator);
+        write(lugar, BuscarDestinoLocator);
+        click(primerOpcionDestinoEnLocator);
+    }
+
+    public void fechaIdaVuelta () throws InterruptedException {
+
+        click(seleccionFechaIdaLocator);
+        Thread.sleep(5000);
+        click(seleccionFechaVueltaLocator);
     }
 
 
@@ -120,10 +108,32 @@ public class RumboTrenesPage extends SeleniumWrapper {
         return getText(mjeError31DiasMas);
     }
 
-    public void buscarTrenHotel(){
+    public void  ingresarSeccionTrenesHotel(){
 
-        submit(btnBuscarLocator);
+        click(btnTrenesHotel);
 
+
+
+    }
+    public void agregarPersonayHotel(){
+        click(btnSelecPersonasMasHabitacionLocator);
+    }
+
+    public void bntBuscar(){
+        click(btnBuscarLocator);
+
+    }
+
+    public void fechaIdaVueltaTH () throws InterruptedException {
+
+        click(selecFechaIdaTHLocator);
+        Thread.sleep(5000);
+        click(selecFechaVueltaTHLocator);
+    }
+
+    public void cargadatosUsuario (String nombre, String apellido){
+
+        escribir(nombre, (WebElement) txtNombreLocator);
     }
 
 
