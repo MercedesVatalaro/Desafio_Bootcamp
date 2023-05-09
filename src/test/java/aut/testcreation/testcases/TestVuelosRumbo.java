@@ -20,8 +20,11 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     RumboHomePageVuelos rumboHomePageVuelos;
 
 
+
+
     @Test //OK
     public void CP0007_DatosVueloDebeElegirDestino() throws InterruptedException {
+
     rumboHomePageVuelos= new RumboHomePageVuelos(super.driver);
     rumboHomePageVuelos.navigateTo("https://www.rumbo.es/");
     rumboHomePageVuelos.rechazarCookies();
@@ -34,8 +37,6 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     Thread.sleep(5000);
     rumboHomePageVuelos.buscarVuelo();Thread.sleep(5000);
     Assertions.assertEquals("Introduce ciudad o aeropuerto de destino", rumboHomePageVuelos.mensajeErrorIngreseDestino());
-
-
 
 
     }
