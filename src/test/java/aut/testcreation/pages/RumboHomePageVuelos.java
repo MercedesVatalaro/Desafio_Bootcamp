@@ -26,12 +26,15 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
 
     By cookiesLocator = By.xpath("//div[@class=\"iubenda-cs-rationale\"]");
     By rechazarCookiesLocator = By.xpath("//button[contains(text(), 'Rechazar todo')]");
-    By origenLocator = By.xpath("//input[@aria-label=\"Origen\"]");
+    By origenLocator = By.xpath("//input[@id=\":Riqed6lalallbla2m:\"]");
     By itemVuelosCentral = By.xpath("//div[@class=\"tab-button selected d-16uu04l\"]");
 
     By itemVuelosNav = By.xpath("//a[@class=\"evvzyi82 d-134lsl7 e89md6u0\"]//ancestor::div[@class=\"d-1ytebqy e10w470p3\"]");
 
-    By destinoLocator = By.xpath("//input[@aria-label=\"Destino\"]");
+    By itemOrigenLocator = By.name("Buenos Aires (BUE");
+
+    By destinoLocator = By.xpath("//input[@id=\":Rjaed6lalallbla2m:\"]");
+
     By origenVacioLocator = By.xpath("//input[@value=\"\" and @aria-label=\"Origen\"]");
 
     By destinoVacioLocator= By.xpath("//input[@value=\"\" and @aria-label=\"Destino\"]");
@@ -53,7 +56,7 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
     By selectorFechaVueltaLocator = By.xpath("//button[@class=\"d-1kuzy14\" and contains(number(), '31')]");
 
     By selectorFechaIdaLocator = By.xpath("//button[@class=\"d-1kuzy14\" and contains(number(), '17')]//ancestor::div[@aria-labelledby=\"5\"]");
-    By inputOrigenBsAs = By.xpath("//input[@class=\"d-1r0xobh ed5mks91\"][1]");
+    By inputOrigenBsAs = By.xpath("//input[@class=\"d-1r0xobh ed5mks91\"]");
     By inputDestinoSantiagoCl = By.xpath("//input[@class=\"d-1r0xobh ed5mks91\"]");
 
     By mjeErrorIntroduceDestino = By.xpath("//span[@class=\"d-1toc9z2\" and contains(text(), 'Introduce ciudad o aeropuerto de destino')]");
@@ -66,7 +69,7 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
     By selectPrimerOpcionVuelta = By.xpath("(//input[@class=\"PrivateSwitchBase-input css-1m9pwf3\" and @type=\"checkbox\"]//ancestor::div[@class=\"FullWaySummary__WaySelectable-sc-43fbz2-0 hSrNDC\"])[2]");
 
     By selectEsperarResultados = By.xpath("//div[@class=\"layer-1\"]//ancestor::div[@class=\"grid-container grid-with-right-ads\"]");
-    By selectFiltarvuelos = By.xpath("//div[@class=\"grid-item\"]");
+
     public void rechazarCookies(){
         if(isEnabled(cookiesLocator)){
             click(rechazarCookiesLocator);
@@ -141,9 +144,7 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
     }
 
     public void seleccionarMasRapido(){
-        WebElement resultados = findElement(selectFiltarvuelos);
-        WebDriverWait esperar = new WebDriverWait(DriverFactory.getDriver(),10 );
-        esperar.until(ExpectedConditions.visibilityOf(resultados));
+
         click(selectorVuelomasRapido);
 
     }

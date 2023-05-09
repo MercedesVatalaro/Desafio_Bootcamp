@@ -16,7 +16,9 @@ public class RumboTrenesPage extends SeleniumWrapper {
     By cookiesLocator = By.xpath("//div[@class=\"iubenda-cs-rationale\"]");
     By rechazarCookiesLocator = By.xpath("//button[contains(text(), 'Rechazar todo')]");
 
-    By itemTrenesCentral = By.xpath("//div[@class=\"tab-button selected evvzyi82 d-134lsl7)\"]");
+
+    By itemTrenes = By.xpath("//a[contains(@class, 'evvzyi82')]");
+
 
     By origenLocator = By.xpath("//input[@id=\":Rmhl6lalaqlql2m:\"]");
     By itemOrigenLocator = By.name("Madrid (madr)");
@@ -28,27 +30,18 @@ public class RumboTrenesPage extends SeleniumWrapper {
     By destinoVacioLocator= By.xpath("//input[@value=\"\" and @aria-label=\"Destino\"]");
 
     By inputFechaIdaLocator= By.xpath("//button[@aria-label=\"Fecha de ida\"]");
-
     By inputFechaVueltaLocator= By.xpath("//button[@aria-label=\"Fecha de vuelta\"]");
 
-    By mjeError31DiasoMas= By.xpath("//span[@class=\"d-1toc9z2\" and contains(text(), 'Lo sentimos, no se pueden reservar más de 31 noches')]");
+    By selectorFechaIdaLocator = By.xpath("//button[@class=\"d-1kuzy14\" and contains(number(), '16')]//ancestor::div[@aria-labelledby=\"5\"]");
+
+    By selectorFechaVueltaLocator = By.xpath("//button[@class=\"d-1kuzy14\" and contains(number(), '31')]//ancestor::div[@aria-labelledby=\"5\"]");
+    By mjeError31DiasMas= By.xpath("//span[@class=\"d-1toc9z2\" and contains(text(), 'Lo sentimos, no se pueden reservar más de 31 noches')]");
 
     By itemTrenesHotel = By.xpath("//div[@class=\"tab-button selected evvzyi82 d-1l2p86v )\"]");
 
-    By selectorFechaVueltaLocator = By.xpath("//button[@class=\"d-ccz9o3\" and contains(number(), '16')]");
+    By selecorigenLocator = By.xpath("//input[@id=\':Rmhl6lalaqlql2m:\']");
 
-    By selectorFechaIdaLocator = By.xpath("//button[@class=\"d-ccz9o3\" and contains(number(), '14')]//ancestor::div[@aria-labelledby=\"5\"]");
-    By selecorigenLocator = By.xpath("//input[@id=\":Rmhl6lalaqlql2m:\"]");
-
-
-    By DestinoLocator = By.xpath("//input[@id=\"d-1r0xobh ed5mks91\"]");
-
-
-
-
-    By FechaIdaLocator= By.xpath("//button[@aria-label=\"Fecha de ida\"]");
-
-    By FechaVueltaLocator= By.xpath("//button[@aria-label=\"Fecha de vuelta\"]");
+    By DestinoLocator = By.xpath("//input[@id=\'d-1r0xobh ed5mks91\']");
 
     By pasajerosLocatortreh = By.xpath("//button[@class=\"d-1vl9gkt\"]");
 
@@ -115,21 +108,23 @@ public class RumboTrenesPage extends SeleniumWrapper {
             click(inputDestinoCordoba);
         }
     }
-    public void ingresarFecha(){
 
-        click(inputFechaIdaLocator);
-
-        if(isDisplayed(inputFechaIdaLocator)) {
-            WebElement fechaIdaSeleccionada = findElement(selectorFechaIdaLocator);
+    public void fechaIdaVuelta() throws InterruptedException {
             click(selectorFechaIdaLocator);
-            boolean sehizoClick = fechaIdaSeleccionada.getAttribute("class").contains("selected");
-
-
-        }
+            Thread.sleep(5000);
+            click(selectorFechaVueltaLocator);
     }
 
 
+    public String mensajedeErrorFecha() {
+        return getText(mjeError31DiasMas);
+    }
 
+    public void buscarTrenHotel(){
+
+        submit(btnBuscarLocator);
+
+    }
 
 
 }
