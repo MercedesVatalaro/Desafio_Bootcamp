@@ -62,6 +62,9 @@ public class TestTrenes extends SeleniumTestBase {
         rumboTrenesPage = new RumboTrenesPage(super.driver);
         rumboTrenesPage.navigateTo("https://www.rumbo.es/");
         rumboTrenesPage.rechazarCookies();
+        rumboTrenesPage.ingresarDatosUsuario("Julia", "Martinez","juliamartinez12@gmail.com",1131345682,"Andres","Lopez","9","1990");
+        Assertions.assertEquals("Introduce nº de documento", rumboTrenesPage.mensajeErrorDNI());
+
 
     }
 
