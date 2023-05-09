@@ -49,16 +49,7 @@ public class TestTrenes extends SeleniumTestBase {
     }
 
     @Test
-    public void CP0015_DatosdeReserva_DniNoIngresado (){
-        rumboTrenesPage = new RumboTrenesPage(super.driver);
-        rumboTrenesPage.navigateTo("https://www.rumbo.es/");
-        rumboTrenesPage.rechazarCookies();
-
-
-
-    }
-
-    public void CP0016_DatosdeReservaViajestren(){
+    public void CP0015_DatosdeReserva_DniNoIngresado () throws InterruptedException{
         rumboTrenesPage = new RumboTrenesPage(super.driver);
         rumboTrenesPage.navigateTo("https://www.rumbo.es/");
         rumboTrenesPage.rechazarCookies();
@@ -66,7 +57,9 @@ public class TestTrenes extends SeleniumTestBase {
         Assertions.assertEquals("Introduce nº de documento", rumboTrenesPage.mensajeErrorDNI());
 
 
+
     }
+
 
 
 
