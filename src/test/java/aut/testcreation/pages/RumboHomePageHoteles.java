@@ -30,19 +30,15 @@ public class RumboHomePageHoteles extends SeleniumWrapper {
     By txtNombreLocator = By.xpath("//input[@name='name']");
     By txtApellidoLocator = By.xpath("//input[@name='surname']");
     By txtEmailLocator= By.xpath("//input[@id='contact-email']");
-    By btnCodigoAreaLocator = By.xpath("//div[@class='selected-dial-code']");
-    By cbCodigoAreaLocator = By.xpath("//li[@class='country highlight preferred']/select[@class='country-name']");
     By txtTelefonoLocator = By.xpath("//input[@name='phone']");
     By checkNoProtegerViajeLocator = By.xpath("//label[@class='insurance__noThanks-radio-label']/span[@class='check']");
-    By txtBonoDescuentoLocator = By.xpath("//input[@name='voucher']");
-    By btnAplicarDescuentoLocator = By.xpath("//div[contains(text(),'Aplicar')]");
     By checkTarjetaCreditoLocator = By.xpath("//label[@id='radio-paymentGroups-creditCard-label']//span[@class='check']");
     By txtNombreTitularTarjetaLocator = By.xpath("//input[@name='creditCard.cardHolder']");
     By txtNumeroTarjetaLocator = By.xpath("//input[@name='creditCard.cardNumber']");
     By txtMesTarjetaLocator = By.xpath("//input[@placeholder='MM']");
     By txtYearTarjetaLocator = By.xpath("//input[@placeholder='AA']");
     By txtCVVLocator = By.xpath("//input[@name='creditCard.cvv']");
-    By selectorOfertasLocator = By.xpath("//span[@data-test='privacyPolicy-check']");
+
 
     //methods
 
