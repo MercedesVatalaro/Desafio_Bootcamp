@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-
 import java.util.List;
 
 
@@ -25,7 +24,7 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
     By cookiesLocator = By.xpath("//div[@class=\"iubenda-cs-rationale\"]");
     By rechazarCookiesLocator = By.xpath("//button[contains(text(), 'Rechazar todo')]");
 
-    By origenLocator = By.xpath("//input[@id=\":Riqed6lalallbla2m:\"]");
+    //By origenLocator = By.xpath("//input[@id=\":Riqed6lalallbla2m:\"]");
 
    By origenLocator = By.xpath("//input[@aria-label=\"Origen\"]");
 
@@ -38,7 +37,7 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
 
     By itemOrigenLocator = By.name("Buenos Aires (BUE");
 
-    By destinoLocator = By.xpath("//input[@id=\":Rjaed6lalallbla2m:\"]");
+    //By destinoLocator = By.xpath("//input[@id=\":Rjaed6lalallbla2m:\"]");
 
     By origenVacioLocator = By.xpath("//input[@value=\"\" and @aria-label=\"Origen\"]");
 
@@ -68,8 +67,8 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
     By inputOrigenBsAs = By.xpath("//input[@class=\"d-1r0xobh ed5mks91\"]");
     By inputDestinoSantiagoCl = By.xpath("//input[@class=\"d-1r0xobh ed5mks91\"]");
 
-    By selectorFechaIdaLocator = By.xpath("//button[@class=\"d-1kuzy14\"]//preceding::span[contains(text(), 'mayo 2023')][1]");
-    By selectorFechaVueltaLocator = By.xpath("//button[@class=\"d-1kuzy14\"]//preceding::span[contains(text(), 'junio 2023')][1]");
+    //By selectorFechaIdaLocator = By.xpath("//button[@class=\"d-1kuzy14\"]//preceding::span[contains(text(), 'mayo 2023')][1]");
+    //By selectorFechaVueltaLocator = By.xpath("//button[@class=\"d-1kuzy14\"]//preceding::span[contains(text(), 'junio 2023')][1]");
     By inputOrigenElegido = By.xpath("//input[@class=\"d-1r0xobh ed5mks91\"]//preceding::label[contains(text(), 'Origen')][1]");
     By inputDestinoElegido = By.xpath("//input[@class=\"d-1r0xobh ed5mks91\"]//preceding::label[contains(text(), 'Destino')][1]");
 
@@ -90,10 +89,10 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
     By tildeOpcionVueltaElegida = By.xpath("//div[@aria-labelledby=\"mui-514\"]");
     By selectOpcionesVuelta = By.xpath("(//input[@class=\"PrivateSwitchBase-input css-1m9pwf3\" and @type=\"checkbox\"]//ancestor::div[@class=\"FullWaySummary__WaySelectable-sc-43fbz2-0 hSrNDC\"])[2]");
 
-    By selectEsperarResultados = By.xpath("//title[contains(text(), 'Rumbo vuelos baratos Buenos Aires - Santiago')]");
+   // By selectEsperarResultados = By.xpath("//title[contains(text(), 'Rumbo vuelos baratos Buenos Aires - Santiago')]");
     By selectFiltrarvuelos = By.xpath("//ul[@class=\"Tabs__UlElement-cncr__sc-61rlvo-0 evvvUR\"]");
 
-<<<<<<< HEAD
+
     By locatorCheckBoxsVuelosIda = By.xpath("//div[@class=\"Tooltip___StyledMuiTooltip-sc-ya8k7d-3 gyqIyU\" and @aria-labelledby=\"mui-1\"]");
 
     By locatorCheckBoxsVuelosVuelta = By.xpath("//div[@class=\"Tooltip___StyledMuiTooltip-sc-ya8k7d-3 gyqIyU\" and @aria-labelledby=\"mui-6\"]");
@@ -127,172 +126,165 @@ public class RumboHomePageVuelos extends SeleniumWrapper {
 
    By checkboxEquipaje = By.xpath("//label[@data-test=\"radio-label-selected\"]//preceding::div[@class=\"css-8nvty\"]");
 
-   public void rechazarCookies(){
-=======
-    By locatorCheckBoxsVuelos = By.xpath("//div[@class=\"FullWaySummary__WaySelectable-sc-43fbz2-0 fXPHoK\"]");
 
-    public void rechazarCookies(){
->>>>>>> d08e951fbff9466273e2b30775160ad87634cad4
-        if(isEnabled(cookiesLocator)){
-            click(rechazarCookiesLocator);
 
-        }
+       By locatorCheckBoxsVuelos = By.xpath("//div[@class=\"FullWaySummary__WaySelectable-sc-43fbz2-0 fXPHoK\"]");
 
-    }
+       public void rechazarCookies () {
 
-    public void ingresarOrigen(String origen) {
+           if (isEnabled(cookiesLocator)) {
+               click(rechazarCookiesLocator);
 
-        click(btnBorrarDatosOrigen);
-        click(origenLocator);
-        clear(origenLocator);
+           }
 
-        write(origen, origenLocator);
+       }
 
-        if (isDisplayed(origenLocator)) {
+       public void ingresarOrigen (String origen){
 
-            click(inputOrigenElegido);
-        }
-    }
-    public void ingresarDestino(String destino) {
+           click(btnBorrarDatosOrigen);
+           click(origenLocator);
+           clear(origenLocator);
 
+           write(origen, origenLocator);
 
-        click(destinoLocator);
-        //clear(destinoLocator);
-        write(destino, destinoLocator);
+           if (isDisplayed(origenLocator)) {
 
-        if (isDisplayed(destinoLocator)) {
+               click(inputOrigenElegido);
+           }
+       }
+       public void ingresarDestino (String destino){
 
-            click(inputDestinoElegido);
-        }
-    }
-    public void borrarInputDestino(){
 
-        click(destinoLocator);
-        clear(destinoLocator);
-        isSelected(destinoVacioLocator);
+           click(destinoLocator);
+           //clear(destinoLocator);
+           write(destino, destinoLocator);
 
-    }
-    public void ingresarFecha(){
+           if (isDisplayed(destinoLocator)) {
 
+               click(inputDestinoElegido);
+           }
+       }
+       public void borrarInputDestino () {
 
-        click(inputFechaIdaLocator);
+           click(destinoLocator);
+           clear(destinoLocator);
+           isSelected(destinoVacioLocator);
 
-        if(isDisplayed(inputFechaIdaLocator)){
-            WebElement fechaIdaSeleccionada = findElement(selectorFechaIdaLocator);
-            click(selectorFechaIdaLocator);
-            boolean sehizoClick = fechaIdaSeleccionada.getAttribute("class").contains("selected");
-            if(sehizoClick){
+       }
+       public void ingresarFecha () {
 
-                click(selectorFechaVueltaLocator);
-            }
 
-        }
+           click(inputFechaIdaLocator);
 
-    }
+           if (isDisplayed(inputFechaIdaLocator)) {
+               WebElement fechaIdaSeleccionada = findElement(selectorFechaIdaLocator);
+               click(selectorFechaIdaLocator);
+               boolean sehizoClick = fechaIdaSeleccionada.getAttribute("class").contains("selected");
+               if (sehizoClick) {
 
+                   click(selectorFechaVueltaLocator);
+               }
 
+           }
 
-    public void buscarVuelo(){
+       }
 
-        submit(btnBuscarLocator);
 
-    }
-    public String mensajeErrorIngreseDestino() {
-        return getText(mjeErrorIntroduceDestino);
-    }
+       public void buscarVuelo () {
 
-    public void aniadirHotel(){
-        click(checkboxAniadirHotel);
+           submit(btnBuscarLocator);
 
-    }
+       }
+       public String mensajeErrorIngreseDestino () {
+           return getText(mjeErrorIntroduceDestino);
+       }
 
-    public void seleccionarMasRapido(){
+       public void aniadirHotel () {
+           click(checkboxAniadirHotel);
 
+       }
 
-        click(selectorVuelomasRapido);
+       public void seleccionarMasRapido () {
 
-    switchToTabByTitleContains("Rumbo vuelos baratos Madrid - Cancún");
 
-    click(selectorVuelomasRapido);
+           click(selectorVuelomasRapido);
 
+           switchToTabByTitleContains("Rumbo vuelos baratos Madrid - Cancún");
 
-    }
+           click(selectorVuelomasRapido);
 
 
-    public void tildarOpcionIda(){
+       }
 
-        switchToTabByTitleContains("Rumbo vuelos baratos Madrid - Santiago");
 
+       public void tildarOpcionIda () {
 
+           switchToTabByTitleContains("Rumbo vuelos baratos Madrid - Santiago");
 
-        click(locatorCheckBoxsVuelosIda);
 
+           click(locatorCheckBoxsVuelosIda);
 
-    }
 
-    public void tildarOpcionVuelta(){
+       }
 
-        switchToTabByTitleContains("Rumbo vuelos baratos Madrid - Santiago");
-        click(locatorCheckBoxsVuelosVuelta);
-    }
-    public void ingresarDatosContacto(String nombre, String apellido, String email, String telefono, String direccion, String nroCalle, String codigoPostal, String ciudad){
+       public void tildarOpcionVuelta () {
 
-    write(nombre, inputNombreContactoLocator);
-    write(apellido, inputApellidoContactoLocator);
-    write(email, inputEmailContactoLocator);
-    scrolling(buscarElementoWeb(selectCarateristicaTelefonoContactoLocator));
-    write(telefono, inputTelefonoContactoLocator);
-    write(direccion, inputDireccionContactoLocator);
-    write(nroCalle, inputNumeroCalleContactoLocator);
-    write(codigoPostal, inputCodigoPostalContactoLocator);
-    write(ciudad, inputCiudadContactoLocator);
-    scrolling(buscarElementoWeb(selectPaisContactoLocator));
+           switchToTabByTitleContains("Rumbo vuelos baratos Madrid - Santiago");
+           click(locatorCheckBoxsVuelosVuelta);
+       }
+       public void ingresarDatosContacto (String nombre, String apellido, String email, String telefono, String
+       direccion, String nroCalle, String codigoPostal, String ciudad){
 
+           write(nombre, inputNombreContactoLocator);
+           write(apellido, inputApellidoContactoLocator);
+           write(email, inputEmailContactoLocator);
+           scrolling(buscarElementoWeb(selectCarateristicaTelefonoContactoLocator));
+           write(telefono, inputTelefonoContactoLocator);
+           write(direccion, inputDireccionContactoLocator);
+           write(nroCalle, inputNumeroCalleContactoLocator);
+           write(codigoPostal, inputCodigoPostalContactoLocator);
+           write(ciudad, inputCiudadContactoLocator);
+           scrolling(buscarElementoWeb(selectPaisContactoLocator));
 
 
+       }
 
+       public void ingresarDatosPasajero (String nombre, String apellido, String diaNacimiento, String anioNacimiento){
 
-    }
+           write(nombre, inputNombrePasajeroLocator);
+           write(apellido, inputApellidoPasajeroLocator);
+           write(diaNacimiento, inputDiaNacimientoPasajeroLocator);
+           scrolling(buscarElementoWeb(selectMesNacimientoPasajeroLocator));
+           write(anioNacimiento, inputAnioNacimientoPasajeroLocator);
 
-    public void ingresarDatosPasajero(String nombre, String apellido, String diaNacimiento, String anioNacimiento){
 
-    write(nombre,inputNombrePasajeroLocator);
-    write(apellido, inputApellidoPasajeroLocator);
-    write(diaNacimiento, inputDiaNacimientoPasajeroLocator);
-    scrolling(buscarElementoWeb(selectMesNacimientoPasajeroLocator));
-    write(anioNacimiento, inputAnioNacimientoPasajeroLocator);
+       }
+       public void seleccionarTarifa () {
+           switchToTabByTitleContains(" Pago seguro - Rumbo");
+           scrolling(buscarElementoWeb(btnElegirFlexible));
+           click(btnElegirFlexible);
+       }
+       public void seleccionarEquipaje () {
 
+           scrolling(buscarElementoWeb(checkboxEquipaje));
+           click(checkboxEquipaje);
+       }
+       public void clickEnSiguiente () {
 
-    }
-    public void seleccionarTarifa(){
-        switchToTabByTitleContains(" Pago seguro - Rumbo");
-        scrolling(buscarElementoWeb(btnElegirFlexible));
-        click(btnElegirFlexible);
-    }
-    public void seleccionarEquipaje(){
+           click(btnSiguiente);
+       }
+       public void seleccionarPrecio () {
 
-       scrolling(buscarElementoWeb(checkboxEquipaje));
-       click(checkboxEquipaje);
-    }
-    public void clickEnSiguiente(){
 
-    click(btnSiguiente);
-    }
-    public void seleccionarPrecio(){
+       }
+       public void reservarAhora () {
+           click(btnReservarAhora);
+       }
 
 
-    }
-    public void reservarAhora(){
-        click(btnReservarAhora);
-    }
+       public void navegarAlHome () {
+           navigateTo(BASE_URL_AUT);
+       }
 
 
-    public void navegarAlHome(){
-        navigateTo(BASE_URL_AUT);
-    }
-
-
-
-
-
-}
+   }

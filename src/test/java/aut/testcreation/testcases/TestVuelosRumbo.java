@@ -29,7 +29,7 @@ public class TestVuelosRumbo extends SeleniumTestBase {
     rumboHomePageVuelos.navegarAlHome();
     rumboHomePageVuelos.rechazarCookies();
     Thread.sleep(5000);
-    rumboHomePageVuelos.ingresarOrigen("Buenos Aires (BUE)");
+    rumboHomePageVuelos.ingresarOrigen("Madrid (MAD)");
     Thread.sleep(5000);
     rumboHomePageVuelos.borrarInputDestino();
     Thread.sleep(5000);
